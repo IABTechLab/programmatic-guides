@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>IAB Tech Lab Docs</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">    
+    <link rel="shortcut icon" href="favicon.ico">  
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <!-- FontAwesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin="anonymous"></script>
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../assets/plugins/bootstrap/css/bootstrap.min.css">   
+    <!-- Plugins CSS -->    
+    <link rel="stylesheet" href="../assets/plugins/prism/prism.css">
+    <link rel="stylesheet" href="../assets/plugins/elegant_font/css/style.css">  
+      
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="../assets/css/styles.css">
+    
+</head> 
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+ 
+<body class="body-red">
+    <div class="page-wrapper">
+        <!-- ******Header****** -->
+        <header id="header" class="header">
+            <div class="container">
+                <div class="branding">
+                    <h1 class="logo">
+                        <a href="../index.html">
+							<span style="display:inline-block;">
+							<img src="../assets/images/iab-tl-wt.png"/></span>
+							
+							<!--
+							<span aria-hidden="true" class="icon_documents_alt icon"></span>
+								-->
+								
+							<span class="text-highlight">IAB Tech Lab</span><span class="text-bold">Docs</span>
+                        </a>
+                    </h1>
+                    
+                </div><!--//branding-->
+                
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../index.html">Docs Home</a></li>
+					<li class="breadcrumb-item active">CTV with SSAI</li>
+                </ol>
+                
+            </div><!--//container-->
+        </header><!--//header-->
+		
+		<div class="doc-wrapper">
+            <div class="container">
+				<div class="row">
+					<div class="col-md-3">
+						<img class="logo" src="../assets/images/iab-tl.png"/> 
+					</div>
+					<div class="col-md-9 col-12">
+				<div id="doc-header" class="doc-header text-left">
+                    <h1 class="doc-title">Programmatic Guide</h1>
+					<h2 class="doc-subtitle">Connected TV with Highlights for SSAI</h2>
+					<div class="meta"><i class="far fa-clock"></i> Last updated: August 15, 2021</div>
+				</div>
+                <div>
+                    <a class="btn btn-red btn-cta" href="../assets/pdf/ProgrammaticGuide-CTV.pdf" target="_blank"><i class="fas fa-cloud-download-alt"></i> Download PDF</a> (only the cover page for now)
+                </div>
+			</div>
+                </div><!--//doc-header-->
+                <div class="doc-body row">
+                    <div class="doc-content col-md-9 col-12 order-1">
+                        <div class="content-inner">
+                            
+							<section id="about" class="doc-section">
+                                <h2 class="section-title">About This Guide</h2>
+                                <div class="section-block">
+                                    <p>This guide is part of a series of Programmatic Guides that IAB Tech Lab is providing to address the many technical components involved in executing programmatic ad campaigns. This guide focuses on the use cases involved in a programmatic campaign for connected TV (CTV). And since CTV often works with partners in server-side ad insertion (SSAI), special callouts highlight additional information where working with SSAI is concerned.
+
+<p>This guide is not all-inclusive; rather, it outlines a set of use cases and provides details that are relevant to each use case. Each use case is summarized in a Quick Start Overview and then later in the guide, covered in more detail. Links to additional resources and relevant Tech Lab standards for more details are included for each use case.</p>
+
+							</div><!--//section-block-->
+							 </section><!--//doc-section-->
+							
+							
+							<section id="intro" class="doc-section">
+                                <h2 class="section-title">Overview</h2>
+                                <div class="section-block">
+                                    <p>The goal of this document is to provide guidance for optimizing programmatic effectiveness in the supply chain for CTV campaigns using available resources developed by IAB Tech Lab and beyond. The guidance in this document addresses challenges faced in CTV with the following parties:</p>
+
+<ul>
+	<li>Publisher or player app</li>
+	<li>Ad server</li>
+	<li>Server-side ad insertion (SSAI)</li>
+	<li>Programmatic Platforms (DSP, SSP, exchanges)</li>
+	<li>Measurement verification providers</li>
+	<li>Content providers</li>
+	<li>Other ad tech vendors offering services in CTV</li>
+</ul>
+
+<p>Digital video continues to mature as a medium for advertising, while the connected television (CTV) market has only begun to  leverage the programmatic ad technology initially developed for digital video. Programmatic CTV opens new opportunities for expanding reach into homes across screens and devices. Traditional television has lacked the level of functionality and insight that became the norm across web browsers and mobile apps. Now, with CTV and advances in technology and improvements to standards, the industry has seen increasing parity in capabilities between CTV and digital video. Some of the challenges in CTV, however, lie in delivery, addressability, measurement, and fraud.
+
+<p>This guide summarizes the best practices for using the most recent ad technologies for achieving the best results in CTV advertising. As a guide, it highlights key considerations and directs you to more in-depth information where needed. We’ve broken down the technical components of a CTV campaign into the following use cases:</p>
+
+<ul>
+	<li>Delivery</li>
+	<li>Targeting</li>
+	<li>Measurement & Verification</li>
+	<li>Interactivity</li>
+	<li>Ad Fraud</li>
+	<li>Brand Safety</li>
+</ul>
+
+<p>These use cases are summarized at a high level in the following section, and then each use case is broken down into more details.</p>
+									
+                                </div>
+								<div id="audience" class="section-block">
+									<h3 class="block-title">Audience</h3>
+									<p>This guide is intended for individuals that work in the buying, selling, and development of video advertising in CTV. Ad tech professionals who work with publisher players, ad servers, ad creative developers, measurement & verification providers, as well as demand side platforms & exchanges, media buyers, ad trafficking and operations, partner integration/onboarding engineers and Product Development can all benefit from the guidance offered in this documentation. The content is somewhat technical as it references different specifications and guidance documentation, but anyone who works with systems that handle video ad transactions should find the details useful.</p>
+
+								</div>
+								<div id="background" class="section-block">
+									<h3 class="block-title">Background</h3>
+									<p>The first television was introduced in 1928. It took until the 1980s for cable set top boxes to become mainstream. And it wasn’t until recent years that smart TVs (connected TVs) became mainstream. However, before CTV, we had the Internet, and shortly thereafter, digital video.
+
+<p>With programmatic ad-serving technology, digital video saw exponential growth. Since the initial launch of IAB Tech Lab’s Video Ad Serving Template (VAST) in 2008, digital video could begin to scale ad sales in the same way website publishers could with their display ads. With improvements to VAST and the addition of other technologies, ad tech for digital video became more sophisticated, and digital video quality improved.
+
+<p>With the explosion of devices that enabled consumers to watch their favorite videos anywhere, connected TVs became the next step in bringing that sophisticated ad tech to prime-time screens in people’s living rooms. But ad tech for CTV is still catching up. The good news is that much of the ad tech developed for digital video can also work in CTV.
+
+<p>As existing standards are updated to support CTV, and new standards are considered, this guide offers the best way to address the same challenges in CTV programmatic campaigns that first emerged as digital video matured. From the functional challenges of delivering assets to targeting and measurement to concerns over brand safety and ad fraud, the technical standards that have fueled the growth of digital video can also help CTV to scale and grow.</p>
+
+							</div>
+
+								<div id="preface-ssai" class="section-block">
+									<h3 class="block-title">Preface on SSAI</h3>
+									<p>With SSAI, a client media player on the user device (client) no longer has to make ad server calls to deliver an ad. This is ideal for midroll, live streaming, and broadcast scenarios such as a news or sporting event where the latency of loading and unloading a player/ad on the client can cause errors and result in a poor user experience. Instead, an SSAI provider makes the ad requests on the client’s behalf, which has passed along details about the viewing session such as location, device type, and other data that can be useful in selecting the most relevant ads. After an ad has been selected, the SSAI provider matches the ad quality to that of the content and stitches the ad into the content stream, which is seamlessly delivered to the client player in a single stream.
+
+VAST 4 supports the increasingly common “ad-stitching” method for stitching linear ads into a video or audio content stream and sending it to players on client devices. While VAST 4 has specific items for SSAI, some developers still use VAST 3 to execute.  For version-specific ads from advertisers, VAST 2, 3 or 4 all work today.
+</p>
+
+<img src="../assets/images/diagram_ad-stitch.png"/>
+
+<ol>
+	<li><strong>Message Sent to Stitching Service: </strong>The publisher sends a message for VOD or stream start signal for live stream, to the ad-stitching service.</li>
+	<li><strong>Request Ads via Ad Call: </strong></strong>The ad-stitching service makes a request to the ad server. For VOD, this is typically VMAP or In-line VMAP with VAST to the main ad decision software.  For live stream this is a formatted ADS ad call for the single break.</li>
+	<li><strong>Send VAST: </strong>The ad server responds with a VAST tag with a mezzanine file, and ready-to-serve files. SSAI vendors download the highest bitrate available and get it ready. If the ad stitching service has already received the creative for a previous request and has transcoded the mezzanine file, it moves on to step 5. If the VAST tag response is a Wrapper tag then the ad-stitching service should extract the inner InLine response using the same precedence logic as a client-side media player.</li>
+	<li><strong>*Extract Mezzanine and Transcode: </strong>The ad-stitching service pulls the unique creative identifier from the VAST tag. If the creative has never been used in the system, the mezzanine file is extracted and transcoded. In this scenario, the ad is skipped and the next available ad is played instead. VAST error code 407 is sent.</li>
+	<li><strong>Select Transcoded: </strong>If the creative in the VAST tag from step 3 matches the unique creative identifier for an ad that has already been transcoded, the ad-stitching service selects the pre-transcoded file already in the system.</li>
+	</ol>
+                                <div class="section-block">
+                                    <div class="callout-block callout-info">
+                                        <div class="icon-holder">
+                                            <i class="fas fa-info-circle"></i>
+                                        </div><!--//icon-holder-->
+                                        <div class="content">
+                                            <h4 class="callout-title">SSAI Highlights</h4>
+                                            <p>Look for the blue callouts that highlight special considerations when working with SSAI.
+</p>
+                                        </div><!--//content-->
+                                    </div><!--//callout-block-->
+</div>
+
+                            </section><!--//doc-section-->
+                            
+							<section id="use-cases" class="doc-section">
+                                <h2 class="section-title">Summary of Use Cases</h2>
+								<p>The following section outlines typical use cases broken down into functional areas such as Delivery, Targeting, Measurement, Interactivity, Brand Safety, and Ad Fraud. For simplification, we’ve highlighted commonly encountered challenges for each functional topic, as well as which specific Tech Lab standards should be implemented to address these issues. This section of the guidebook can be thought of somewhat as an executive summary, where a deep technical understanding isn’t necessarily required to grasp the concepts described in each use case. </p>
+
+Those interested in the critical details of applying the technical standards cited within this section should refer to the relevant portions within the Implementation section of this guidebook.</p>
+
+                                <div id="uc-assets-delivery"  class="section-block">
+                                    <h3 class="block-title">Video Assets Delivery</h3>
+	                                
+                                    <p><strong>Quality: </strong>As advertisers look to extend their digital video campaigns to include CTV, one of the primary considerations is the screen size on which ads are viewed. Larger screens mean that higher asset quality and overall consumer experience are even more important. In addition, CTV ad delivery and the need to support various devices have led to a deeper focus on Server-Side Ad Insertion (SSAI). For asset submission in CTV, and especially when working with SSAI, a mezzanine file is required. A mezzanine file is encoded at the highest possible quality and used to encode ready-to-serve ads at lower resolutions and smaller file size. Guidelines for creative file submission are outlined the Digital Video Ad Formats Guidelines.</p>
+									
+									<p><strong>Ad Request: </strong> VAST has historically been an ad response format, with the ad request left as an integration exercise. With VAST 4.1, a standard set of macros can be used to communicate information about the impression and player environment in the ad request. This enables ad servers to generate the best possible VAST response for any impression and reduce delivery errors. We recommend the use of [Macros and CATS] </p>
+									
+	                               
+									<p><strong>Campaign Tracking: </strong>Another challenge in video ad delivery has been the lack of the ability to uniquely identify a creative asset across different media or screens. This is useful for reporting, caching creative assets, and frequency capping. We recommend advertisers provide [Universal AdID] </p>
+									
+									<p><strong>Separation of Media from Executable Code: </strong>The complexity of digital video has given rise to the need to separate the linear video file from any executable code like creative interactive API files or measurement scripts. While the VAST media file nodes has accepted various media files in the past, interactive APIs may not always be executed. In VPAID, the code and the media file are bundled together, resulting in latency and making it impossible to serve an ad through SSAI. Hence, with VAST 4.x, the deprecation of VPAID was announced in favor of providing separate locations for interactive and measurement scripts that ensure the media file is always easily accessible from the VAST tag. We recommend advertisers and their partners provide media files and executable codes separately to be included in VAST verification and creative nodes [VPAID deprecation] </p>	
+								
+                                <div class="section-block">
+                                    <div class="callout-block callout-info">
+                                        <div class="icon-holder">
+                                            <i class="fas fa-info-circle"></i>
+                                        </div><!--//icon-holder-->
+                                        <div class="content">
+                                            <h4 class="callout-title">SSAI Delivery</h4>
+                                            <p>Server-side Ad Insertion implementations present a number of unique complexities that could result in a multitude of errors if executed improperly. For example, custom work may be required between a client player and an SSAI provider to negotiate the logic of allowing a skip button for ads. Premium long-form content viewed on high resolution screens sets the expectation of an equally high-quality ad experience that can be delivered across various connections and device types. Ad servers and other entities need access to additional data from publishers for a clearer view of the details of how and where their media is being shown.</p> 
+To enable error free execution of SSAI delivery, we recommend the following resources:</p>
+<ul>
+	<li>[VAST Compliance]</li>
+	<li>[Macros]</li>
+	<li>[Mezzanine and Ready-To-Serve Files, DVAFG]</li>
+</ul> 
+
+                                        </div><!--//content-->
+                                    </div><!--//callout-block-->
+                                
+                                <div class="callout-block callout-links">
+                                    <!--//icon holder
+									<div class="icon-reference">
+                                        <i class="fas fa-book"></i>
+                                    </div> -->
+										<div class="content-ref">
+											<h4 class="callout-title-ref">IAB Tech Lab Resources for Video Asset Delivery</h4>
+                                
+									<ul class="list list-links">
+                                        <li><a href="https://iabtechlab.com/" target="_blank"><span style="color:#ee3123"><i class="fas fa-external-link-square-alt"></i><span class="ml-2">Digital Video Ad Format Guidelines</span></a></li>
+										
+										<li><a href="https://iabtechlab.com/standards/vast/" target="_blank"><span style="color:#ee3123"><i class="fas fa-external-link-square-alt"></i><span class="ml-2">Video Ad Serving Template (VAST)</span></a></li>
+										
+										<li><a href="https://interactiveadvertisingbureau.github.io/vast/vast4macros/vast4-macros-latest.html#macro-spec-clientua" target="_blank"><span style="color:#ee3123"><i class="fas fa-external-link-square-alt"></i><span class="ml-2">VAST Macros</span></a></li>
+										
+										<li><a href="https://iabtechlab.com/standards/cats/" target="_blank"><span style="color:#ee3123"><i class="fas fa-external-link-square-alt"></i><span class="ml-2">Common Ad Transport Standard (CATS)</span></a></li>
+									
+                                    </ul>
+							
+									</div><!--//content-->
+                            	</div><!--//callout-block-->
+								
+								</div><!--//section-block-->
+								
+                                <div id="uc-targeting"  class="section-block">
+                                    <h3 class="block-title">Targeting</h3>
+                                    <p>Serving the right ad to the right audience at the right time and place has become ad tech’s favorite mantra. As the industry grapples with the loss of traditional identifiers, the CTV space has often had to forgo the luxuries of persistent user IDs, given the limitations of some environments. Some of the existing addressability solutions for CTV do rely to a degree on identifying audiences through attributes collected from devices such as User Agent (UA), IP Address, and app store IDs. And while these methods may not be immediately at risk of disappearing, with privacy in mind, the direction of the industry at large may be viewed as an indicator of what’s to come for video. 
+										
+We recommend Advertisers review our guidance on:</p> 
+<ul>
+	<li>Identfier for Advertising (IFA)</li>
+	<li>User Agent</li>
+	<li>CTV App ID</li>
+</ul>
+
+<p>You may also want to follow IAB Tech Lab's Project Rearc for guidance on addressability, privacy, and accountability.</p>
+
+Beyond identity-based targeting, tools such as content and audience taxonomies exist as methods for enhancing the ability to provide relevant ads. We recommend the use of[Content/Audience Taxonomy, content Macros, and CATS ] by sellers to inform the advertisers about the content that aids targeting.</p>
+
+                                <div class="section-block">
+                                    <div class="callout-block callout-info">
+                                        <div class="icon-holder">
+                                            <i class="fas fa-info-circle"></i>
+                                        </div><!--//icon-holder-->
+                                        <div class="content">
+                                            <h4 class="callout-title">SSAI Targeting</h4>
+                                            <p>In SSAI enabled environments, there is a general lack of standard identifiers, but even in cases where they do exist, stitching services may not have access to a client player’s identifier, which can complicate personalization and ad tracking. As a result, the ad-stitching service must identify devices where ads play by using a combination of other methods like IFA, User Agent, and App ID.
+</p>
+                                        </div><!--//content-->
+                                    </div><!--//callout-block-->
+                                </div><!--//section-block-->
+								
+                                <div id="uc-measurement"  class="section-block">
+                                    <h3 class="block-title">Measurement</h3>
+                                    <p>Measurement and verification are key requirements in digital advertising and can be key differentiators between Connected TV (CTV) advertising and traditional broadcast TV. There are three critical scenarios for measurement and verification of video advertising on CTV and other consumer devices:</p>
+
+<ul>
+	<li>A client device is capable of running executable code like measurement and verification scripts.</li>
+	<li>A client device is not capable of running executable code like measurement and verification scripts.</li>
+	<li>Ad server deploys SSAI and client device is capable of running executable code like measurement and verification scripts.</li>
+</ul> 
+
+We recommend standardizing around VAST 4.x and Open Measurement (OM) SDK to deliver scalable and consistent measurement support for CTV platforms and cross-media videos. [Open Measurement, VAST 4, see also SSAI guide]
+</p>
+                                <div class="section-block">
+                                    <div class="callout-block callout-info">
+                                        <div class="icon-holder">
+                                            <i class="fas fa-info-circle"></i>
+                                        </div><!--//icon-holder-->
+                                        <div class="content">
+                                            <h4 class="callout-title">SSAI Measurement</h4>
+                                            <p>Measurement events are usually communicated by the stitching service on the client player’s behalf, making it challenging to verify these events actually occurred on the client device. SSAI environments typically do not support the execution of 3rd party scripts. VPAID does not work in the SSAI environment. Where a client can execute measurement scripts and OM SDK is available, it should be used. For example, when SSAI delivery is on an iOS device or web browser, OM SDK can provide measurement.
+</p>
+                                        </div><!--//content-->
+                                    </div><!--//callout-block-->
+                                </div><!--//section-block-->
+								
+                                <div id="uc-interactivity"  class="section-block">
+                                    <h3 class="block-title">Interactivity</h3>
+                                    <p>Until recently, VPAID historically had been the preferred mechanism for providing a means to deliver interactive video ads. But due to issues surrounding security, latency, and a lack of support in certain environments, VPAID is rapidly becoming outdated and is in the process of being deprecated in favor of the newer Secure Interactive Media Interface Definition (SIMID) standard.</p>
+
+Often an ad developer or publisher might not have the resources to enable complex and custom interactive components for a campaign. In these scenarios where resources and capabilities may be limited, VAST 4.x has introduced interactive templates to simplify the execution of common interactive use cases, such as end cards, which require only some minimal visual assets (images, CSS, etc.) and some instructions/metadata in the VAST tag.</p>
+
+                                <div class="section-block">
+                                    <div class="callout-block callout-info">
+                                        <div class="icon-holder">
+                                            <i class="fas fa-info-circle"></i>
+                                        </div><!--//icon-holder-->
+                                        <div class="content">
+                                            <h4 class="callout-title">SSAI Interactivity</h4>
+                                            <p>Overall interactive ads are still not commonly seen in many SSAI use cases yet today, though the application is not impossible. Again, due to a lack of support for 3rd party scripts and deprecation of the technology, VPAID is not an option for delivering interactive ads in most SSAI environments. Yet with SIMID interactive creatives can be rendered in the SSAI context.
+</p>
+                                        </div><!--//content-->
+                                    </div><!--//callout-block-->
+                                </div><!--//section-block-->
+								
+                                <div id="uc-brand-safety"  class="section-block">
+                                    <h3 class="block-title">Brand Safety</h3>
+                                    <p>Generally speaking, there are three main areas where brand safety standards can be applied; categorization, communication, and post-bid action.</p>
+
+Delivering an ad in the wrong context can not only negatively impact the performance of a campaign but can have lasting effects on a brand’s image and favorability.  Providing accurate categorization through the consistent application of a standardized set of taxonomies is key in achieving enough insight for marketers to make decisions into which content is most relevant for displaying their ads. Similarly, efforts have been made to develop a common language for determining where it is safe to run ads, as well as the ability to express levels of risk for sensitive content that may be suitable for one marketer but not for others.  We recommend adopting [Content Taxonomy, GARM Suitability Framework] standards.</p>
+
+Beyond categorization, it is vital to allow for the independent verification of brand safety through standard tools used for communicating important information about an impression and the content where the ad impression will be displayed, such as categories, URLs, and device metadata using [VAST Macros and Open Measurement content URL]</p>
+
+Despite the tools available to maintain a rigorous brand safety approach, often, a brand safety decision can only be reached post-bid when an ad is being delivered. In cases where content is considered unsuitable for the brand, buyers prefer to stop the ad from being rendered. The ability to block or swap ads that were deemed “unsuitable” has historically been done either via proprietary methods or via VPAID for video ads (which is not available for SSAI). It is important to note that challenges with post-bid processing on CTV devices mean that publishers and tech vendors should do their best to support pre-bid scenarios where possible. The Open Measurement team is working on supporting this in a clean and transparent manner. This is not a capability typically available on mobile or CTV at the moment, but is worth being aware of for the longer term.
+</p>
+                                </div><!--//section-block-->
+								
+                                <div id="uc-ad-fraud"  class="section-block">
+                                    <h3 class="block-title">Ad Fraud</h3>
+                                    <p>As more and more demand develops for the premium, high-quality ad experiences that CTV provides,, the industry has seen an increasing number of attempts to exploit vulnerabilities inherent to the technology. Some of the most significant violations have occurred through the spoofing of platforms, devices,, and IPs to misrepresent higher-value inventory or even monetize completely invalid requests. The key to fighting fraud in these environments is through the application of a rigorous set of transparency standards. [App-ads.txt, ads.cert, SupplyChain Object, User Agent, App store Id guides ]
+</p>
+                                </div><!--//section-block-->
+							
+							
+							<section id="guidance" class="doc-section">
+                                <h2 class="section-title">Gudidance Details</h2>
+								<p>The following section delves into the most salient technical details on which Tech Lab standards support the CTV use cases described in the previous section. The basis for implementing each of these standards has been laid out to provide an understanding of the minimal technical requirements for achieving Ad Delivery, Targeting, Measurement, Interactivity, Brand Safety, and Fraud Prevention. This section is likely most useful for engineers, product managers, and others interested in the technical mechanics of executing ad campaigns in CTV environments.</p>	
+							</section><!--//doc-section-->
+							
+							<section id="ad-delivery" class="doc-section">
+                                <h2 class="section-title">Ad Delivery</h2>
+								
+							</section><!--//doc-section-->
+								
+                                <div id="ad-vast"  class="section-block">
+                                    <h3 class="block-title">VAST Compliance</h3>
+                                    <p>Compliance is a two-party effort that involves, at a minimum, the media player and the ad
+server. Both must meet certain expectations so that VAST can be truly interoperable and
+encourage growth in the marketplace.
+
+<h6>Ad Server Expectations</h6>
+<p>VAST-compliant ad servers must be able to serve ad responses that conform to the VAST XML schema defined in the VAST 4.x specification. Ad servers must also be able to receive the subsequent tracking and error requests that result from the media player’s execution of the VAST ad response. Tables for each VAST XML element define which are required in a VAST response.</p>
+
+<h6>Media Player Expectations</h6> 
+<p>VAST-compliant media players and SSAI systems must be able to play the ad in a VAST response according to the instructions provided by the VAST ad response and according to the media player’s declared format support, which includes:</p>
+
+<ul>
+	<li>Rendering the ad asset(s) correctly.</li>
+	<li>Respecting ad server instructions in a VAST response, including those of any subsequent ad servers called in a chain of VAST Wrapper responses, providing the responses are VAST-compliant.</li>
+	<li>Responding to supported user interactions</li>
+	<li>Sending appropriate tracking information back to the ad server</li>
+	<li>Supporting XML conventions such as standard comment syntax (i.e. acknowledge
+VAST comments in the standard XML syntax: <code>&lt;!--comment--&gt;</code>). </li>
+</ul>
+
+<p>In general, the media player need only accept ads that it requests and ad server responses
+should be provided in the ad format intended. 
+For example, VAST allows for compliance while only supporting a subset of ad types
+(described in VAST 4.x section 2.3.1). For example, if a standard Linear Ad is requested but a
+Skippable Linear Ad is received, the media player is not expected to display the Skippable
+Linear Ad nor should the media player play the Skippable Ad as a Linear Ad (without skip
+controls).</p>
+
+The following features must be supported for general functionality:
+<ul>
+	<li>Declaration of ad types</li>
+	<li>XML structure</li>
+	<li>Tracking</li>
+	<li>Wrappers</li>
+	<li>Error reporting</li>
+	<li>Macros</li>
+	<li>Industry icons</li>
+	<li>Verification</li>
+</ul>
+
+<p>Details for proper ad display and VAST support, including player support requirement notes for each XML element, are defined throughout the VAST 4.x specification.</p>
+                                </div><!--//section-block-->
+                                
+                                <div id="ad-mezz"  class="section-block">
+                                    <h3 class="block-title">Mezzanine and Ready-to-Serve Files</h3>
+                                    <p>VAST 4.x includes a media container for the mezzanine file, which is the raw high-quality video file that the publisher can use to produce the best quality file where needed. A mezzanine file is required in ad-stitched executions. In addition to the mezzanine file, VAST 4.x requires either an adaptive stream ready-to-serve file or a minimum of three media files at different levels of quality: high, medium, and low. Identifying the quality levels of three media files enables the media player to more quickly find the appropriate file needed for a given environment for client-side ready-to-serve execution.</p>
+
+<h6>Encoding Ready-to-Serve Files</h6>
+Offering three ready-to-serve video files at varying bitrates for linear ads gives the player
+some flexibility for serving the best ad for the viewer’s environment. Deciding on the appropriate bitrate to use depends on the resolution where the video ad plays. In general, the higher the resolution, the higher the bitrate should be for optimal quality playback.</p>
+
+Using a video bits per pixel (VBPP) calculation, you can compute the target bit rate (bits per second) for the target screen width and height. For the H.264 codec, a good rule of thumb is to use a VBPP within the range of .05 to 0.1; however, a video file with more movement (such as a sports ad) may require a higher VBPP and
+therefore a higher target bitrate.</p>
+
+The following formula can be used to calculate the appropriate bitrate for a particular
+resolution:</p>
+
+<div style="text-align:center; background-color:grey; color:white; padding-top:10px; padding-bottom:10px">Target bitrate (bits per second) = width x height x frame rate x VBPP</div>
+</p>
+
+<p>When you submit a video ad for linear placement, you should provide three ready-to-serve
+versions at quality levels for high, medium, and low as indicated in the following table (along
+with a mezzanine file described in the next section). These files can be compiled into an
+adaptive streaming file or referenced from an interactive file.</p>
+
+Ad developers should refer to the Digital Video Ad Format Guidelines for encoding recommendations.</p>
+
+<h6>The Mezzanine File</h6>
+The mezzanine file is a raw source file that publishers can use to encode the ad at the
+required quality level for the content stream. This original file is too big to serve but
+contains the quality necessary to encode the appropriate version for a viewer’s environment. The mezzanine file is vital to ad-stitching services commonly used with online television networks. Ad-serving vendors (3rd party) can also use the mezzanine file to transcode all the necessary files to meet varying publisher requirements.</p>
+
+Video and audio specifications for the mezzanine file are defined in the following two tables.
+</p>
+                                   <div style="color:red; padding-top:20px; padding-bottom:10px"><h4>Video Specification for Mezzanine File</h4></div>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Video Setting</th>
+                                                    <th>Specification</th>
+                                                    <th>Notes</th>
+                                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">Bit Rate</th>
+                                                    <td>50Mbps VBR or 15-30 CBR</td>
+                                                    <td>50 Mb for original source (preferred)</td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Aspect Ratio</th>
+                                                    <td>16:9 (HD) or 4:3 (SD)</td>
+                                                    <td>16:9 is preferred</p>"letter-boxing" (black bars) should be avoided</td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Resolution (1x1 pixels)</th>
+                                                    <td>For aspect ratio 16:9
+														<ul>
+															<li>HD = 1920x1080 or 1280x720</li>
+														</ul>
+														For aspect ratio 4:3
+														<ul>
+															<li>HD = 1440x1080</li>
+														</ul>
+														</td>
+                                                    <td>No burned in pillar boxing or letterboxing</p>Future support for 4k</td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Color Space</th>
+                                                    <td>4:2:0 or 4:2:2 YUV</td>
+                                                    <td></td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Frame Rate</th>
+                                                    <td>Depending on region, use one of the following frame rates:
+													<ul>
+														<li>PAL (25 fps)</li>
+														<li>24p (23.98 fps)</li>
+														<li>NTSC Video (29.97 fps)</li>
+													</ul>
+													</td>
+                                                    <td>Native frame rate preferred</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Codec</th>
+                                                    <td>
+                                                    	<ul>
+															<li>MPEG2, H.264/AAC</li>
+															<li>H.264 or Apply ProRes</li>
+															<li>H.265/HEVC</li>
+														</ul>
+                                                    </td>
+                                                    <td>Apple ProRes preferred but may exceed file size threshold for some vendors</p>HEVC may not yet be widely accepted</td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Format</th>
+                                                    <td>
+                                                    	<ul>
+															<li>.mov</li>
+															<li>.mp4</li>
+														</ul>
+                                                    </td>
+                                                    <td></td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Scan Type</th>
+                                                    <td>Progressive</td>
+                                                    <td>No intra-field motion (blended frames)</td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Leaders (slate)</th>
+                                                    <td>Video creative should be submitted without leaders (slate) before content</td>
+                                                    <td></td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Configuration</th>
+                                                    <td>
+                                                    	<ul>
+															<li>Picture to Picture</li>
+															<li>No slate</li>
+															<li>No countdown leader</li>
+															<li>No bars</li>
+															<li>No tone</li>
+														</ul>
+                                                    </td>
+                                                    <td></td>
+                                                    
+                                                </tr>
+                                            </tbody>
+                                        </table>
+										<p></p>
+										
+                                   <div style="color:red; padding-top:20px; padding-bottom:10px"><h4>Audio Specification for Mezzanine File</h4></div>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Audio Setting</th>
+                                                    <th>Specification</th>
+                                                    <th>Notes</th>
+                                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">Audio Format</th>
+                                                    <td>AAC</td>
+                                                    <td>PCM is allowed for the mezzanine file but should not be used in any transcoded files used to serve the ad.</td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Audio Bitrate</th>
+                                                    <td>192 kbps (AAC)</td>
+                                                    <td></td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Audio Channel</th>
+                                                    <td>2 channel sterio mix L&R</td>
+                                                    <td>5.1 Do;by audio configuration may be added (see <a href="https://www.entmerch.org/digitalema/committeescouncils/ema-mezzanine-file-specific.pdf">EMA Mezzanine File Creation and Specification</a>)</td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Audio Sample Rate</th>
+                                                    <td>48kHz</td>
+                                                    <td></td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Audio Levels</th>
+                                                    <td>DB - 12 (average)</td>
+                                                    <td></td>
+                                                </tr>
+                                                
+                                            </tbody>
+                                        </table>
+										<p></p>
+										
+                                </div><!--//section-block-->
+								
+                                <div id="ad-afg"  class="section-block">
+                                    <h3 class="block-title">Ad Format Guidelines</h3>
+                                    <p>The Digital Video Ad Format Guidelines accommodate high-quality video needs for cross-screen linear advertising in mobile, desktop, and TV online. File submission recommendations detail “ready-to-serve” files for streaming, progressive download, and adaptive bitrate streaming formats. Providing the source mezzanine file is also recommended so that the publisher may transcode the file best suited to the environment into which it will serve.</p>
+
+Following these guidelines for video ad file submission will help streamline ad development
+and placement operations while providing the best experience possible in the user’s device for the bandwidth available. 
+</p>
+                                </div><!--//section-block-->
+								
+                                <div id="ad-macros"  class="section-block">
+                                    <h3 class="block-title">Macros</h3>
+                                    <p>VAST player macros enable publisher’s media players to provide additional data points with ad requests, script requests, andtrackers. They allow for passing details such as the user agent and app where the VAST ad is serving.</p> 
+
+VAST player macros are to be filled by the party that performs VAST HTTP requests. Most commonly, for both VAST URLs and tracking pixel URLs, this would be the video player that’s executing the ad or the SSAI server on behalf of the video player. </p>
+
+Information that may be available via HTTP headers is not always consistent, and often publishers do not have control over what values are forwarded. Hence providing macros such as [DEVICEUA], [PAGEURL], and [SERVERUA] are recommended. These macros are also increasingly important as the industry moves away from VPAID and HTTP headers. For a complete list of available macros, please refer to the IAB VAST macro list page. 
+</p>
+
+                                <div class="section-block">
+                                    <div class="callout-block callout-info">
+                                        <div class="icon-holder">
+                                            <i class="fas fa-info-circle"></i>
+                                        </div><!--//icon-holder-->
+                                        <div class="content">
+                                            <h4 class="callout-title">SSAI VAST Macro Guidance</h4>
+                                            <p>While the IAB Tech Lab has an official list of 50+ macros, it’s technically not possible to support all macros in any given HTTP request simply due to length limitations. Refer to the <a href="https://iabtechlab.com/audio-video/ssai-vast-macros-guidance/">SSAI VAST Macro Guidance: Version 1.0</a> for the full list of recommended macros to use for sharing basic user agent, environment, and content details that are critical to verification partners and buyers.</p>
+                                        </div><!--//content-->
+                                    </div><!--//callout-block-->
+									
+									<h6>Device & Environment Macros</h6>
+									<p>Critical for identifying the environment into which the ad will serve. Measurement partners most commonly use these macros for verification against fraud and buyer’s brand safety rules. </p>
+
+<ul>
+	<li>[APPBUNDLE]</li>
+	<li>[STOREID]</li>
+	<li>[STOREURL]</li>
+	<li>[DOMAIN]</li>
+	<li>[ADTYPE]</li>
+	<li>[PAGEURL]</li>
+	<li>[DEVICEIP]</li>
+	<li>[DEVICEUA]</li>
+</ul>
+
+<h6>Content Passing Macros</h6> 
+	<p>Used to help verification partners categorize and evaluate the content against a buyer’s brand safety rules. </p>
+
+<ul>
+	<li>[CONTENTURI]</li>
+	<li>[CONTENTID]</li>
+</ul>
+
+<h6>SSAI and Media Player Macros</h6> 
+<p>Used to help identify the type of player technology that publisher uses.</p>
+
+<ul>
+	<li>[SERVERUA]</li>
+	<li>[SERVERSIDE]</li>
+	<li>[CLIENTUA]</li>
+	<li>[PLAYBACKMETHODS]</li>
+	<li>[PLAYERSTATE]</li>
+</ul>
+
+									
+                                </div><!--//section-block-->
+								
+                                <div id="ad-bid-request"  class="section-block">
+                                    <h3 class="block-title">Bid Request</h3>
+                                    <p>RTB transactions are initiated when an exchange or other supply source sends a bid request to a bidder. The bid request consists of the top-level bid request object, at least one impression object, and may include additional optional objects providing impression context.</p>
+
+The top-level object (i.e., in JSON, the unnamed outer object) is denoted as <code>BidRequest</code> in the model. Of its direct subordinates, only <code>Imp</code> is technically required since it is fundamental to describing the impression being sold and it requires at least one of Banner (which may allow multiple formats), Video, Audio, and Native to define the type of impression (i.e., whichever one or more the publisher is willing to accept; although a bid will be for exactly one of those specified). An impression can optionally be subject to a private marketplace.</p>
+
+Other subordinates to the <code>BidRequest</code> provide various forms of information to assist bidders in making targeting and pricing decisions. This includes details about the user, the device they’re using, the location of either, regulatory constraints, and the content and media in which the impression will occur.
+</p>
+
+<h6>Object: Video</h6>
+The Video object represents an in-stream video impression. Many of the fields are non-essential for minimally viable transactions but are included to offer fine control when needed. Video in OpenRTB generally assumes compliance with the VAST standard. As such, the notion of companion ads is supported by optionally including an array of Banner objects (refer to the Banner object in Section 3.2.6 of the OpenRTB 2.x Spec) that define these companion ads.
+
+                                   <div style="color:red; padding-top:20px; padding-bottom:10px"><h4>OpenRTB Object for Video</h4></div>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Attribute</th>
+                                                    <th>Type</th>
+                                                    <th>Description</th>
+                                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">mimes</th>
+                                                    <td>string array; required</td>
+                                                    <td>Content MIME types supported (video/x-ms-wmv, video/mp4, etc.)</td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">minduration</th>
+                                                    <td>integer; recommended</td>
+                                                    <td>Minimum video ad duration (in seconds)</td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">maxduration</th>
+                                                    <td>integer; recommended</td>
+                                                    <td>Maximum video ad duration (in seconds)</td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">protocols</th>
+                                                    <td>integer array; recommended</td>
+                                                    <td>Array of supported video protocols. Refer to list 5.8 in OpenRTB documentation. At least one supported protocol must be specified in either the <code>protocol</code> or <code>protocols</code> attribute.</td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">protocol</th>
+                                                    <td>integer; DEPRECATED</td>
+                                                    <td>NOTE: Deprecated in favor of <code>protocols</code>.</p>Supported video protocol. Refer to list 5.8 in OpenRTB documentation. At least one supported protocol must be specified in either the <code>protocol</code> or <code>protocols</code> attribute.</td>
+                                                </tr>
+                                                
+                                            </tbody>
+                                        </table>
+
+                                </div><!--//section-block-->
+								
+                                <div id="ad-cats"  class="section-block">
+                                    <h3 class="block-title">CATS</h3>
+                                    <p>text</p>
+                                </div><!--//section-block-->
+								
+                                <div id="ad-creative-id"  class="section-block">
+                                    <h3 class="block-title">Creative Asset ID</h3>
+                                    <p>text</p>
+                                </div><!--//section-block-->
+								
+							</section><!--//doc-section (Ad Delivery)-->
+                                
+								<section id="support" class="doc-section">
+	                                <h2 class="section-title">Support</h2>
+                                    <p>If you have questions about CTV, SSAI, or any of the standards that support these technologies, send an email to support to create a ticket.</p>
+					                <div>
+					                    <a class="btn btn-blue" href="mailto:support@iabtechlab.com" target="_blank">Submit a Ticket</a></p>
+										<h6>IAB Tech Lab Contact</h6>
+										Katie Stroud, Senior Product Manager</p>
+					                </div><!--//section-block-->
+                            </section><!--//doc-section-->
+                        
+						</div><!--//content-inner-->
+                    </div><!--//doc-content-->
+                    <div class="doc-sidebar col-md-3 col-12 order-0 d-none d-md-flex">
+                        <div id="doc-nav" class="doc-nav">
+	                        
+	                            <nav id="doc-menu" class="nav doc-menu flex-column sticky">
+	                                <a class="nav-link scrollto" href="#about">About This Guide</a>
+									<a class="nav-link scrollto" href="#intro">Overview</a>
+									<nav class="doc-sub-menu nav flex-column">
+										<a class="nav-link scrollto" href="#audience">Audience</a>
+										<a class="nav-link scrollto" href="#background">Background</a>
+										<a class="nav-link scrollto" href="#preface-ssai">Preface on SSAI</a>
+									</nav>
+	                                <a class="nav-link scrollto" href="#use-cases">Quick Start Reference</a>
+                                    <nav class="doc-sub-menu nav flex-column">
+                                        <a class="nav-link scrollto" href="#uc-assets-delivery">Video Assets Delivery</a>
+                                        <a class="nav-link scrollto" href="#uc-targeting">Targeting</a>
+                                        <a class="nav-link scrollto" href="#uc-measurement">Measurement</a>
+										<a class="nav-link scrollto" href="#uc-interactivity">Interactivity</a>
+										<a class="nav-link scrollto" href="#uc-brand-safety">Brand Safety</a>
+										<a class="nav-link scrollto" href="#uc-ad-fraud">Ad Fraud</a>
+                                    </nav>
+	                                <a class="nav-link scrollto" href="#guidance">Guidance Details</a>
+                                   
+	                                <a class="nav-link scrollto" href="#ad-delivery">Ad Delivery</a>
+                                    <nav class="doc-sub-menu nav flex-column">
+                                        <a class="nav-link scrollto" href="#ad-vast">VAST Compliance</a>
+										<a class="nav-link scrollto" href="#ad-mezz">Mezzanine</a>
+                                        <a class="nav-link scrollto" href="#ad-afg">Ad Format Guidelines</a>
+                                        <a class="nav-link scrollto" href="#ad-macros">Macros</a>
+										<a class="nav-link scrollto" href="#ad-bid-request">Bid Request</a>
+										<a class="nav-link scrollto" href="#ad-cats">CATS</a>
+										<a class="nav-link scrollto" href="#ad-creative-id">Creative Asset ID</a>
+                                    </nav>
+									<!--//nav-->
+	                            </nav><!--//doc-menu-->
+	                        
+                        </div>
+                    </div><!--//doc-sidebar-->
+                </div><!--//doc-body-->              
+            </div><!--//container-->
+        </div><!--//doc-wrapper-->
+        
+        
+    </div><!--//page-wrapper-->
+    
+    <footer id="footer" class="footer text-center">
+        <div class="container">
+            <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can buy the commercial license via our website: themes.3rdwavemedia.com */-->
+            <small class="copyright">Developed by <a href="https://themes.3rdwavemedia.com/" target="_blank">IAB Tech Lab working groups</a> for members and everyone who benfits from online content</small>
+            
+        </div><!--//container-->
+    </footer><!--//footer-->
+    
+     
+    <!-- Main Javascript -->          
+    <script type="text/javascript" src="../assets/plugins/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../assets/plugins/prism/prism.js"></script>    
+    <script type="text/javascript" src="../assets/plugins/jquery-scrollTo/jquery.scrollTo.min.js"></script>      
+    <script type="text/javascript" src="../assets/plugins/stickyfill/dist/stickyfill.min.js"></script>                                                             
+    <script type="text/javascript" src="../assets/js/main.js"></script>
+    
+</body>
+</html> 
+
