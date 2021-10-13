@@ -79,6 +79,12 @@ p.code {
     display: inline-block;
 }
 
+p.tag {
+	font-weight: bold;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    display: inline;
+}
+
 .btn, a.btn {
   -webkit-transition: all 0.4s ease-in-out;
   -moz-transition: all 0.4s ease-in-out;

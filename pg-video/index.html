@@ -344,7 +344,7 @@ encourage growth in the marketplace.
 	<li>Responding to supported user interactions</li>
 	<li>Sending appropriate tracking information back to the ad server</li>
 	<li>Supporting XML conventions such as standard comment syntax (i.e. acknowledge
-VAST comments in the standard XML syntax: <code>&lt;!--comment--&gt;</code>). </li>
+VAST comments in the standard XML syntax: <p class="tag">&lt;!--comment--&gt;</p>). </li>
 </ul>
 
 <p>In general, the media player need only accept ads that it requests and ad server responses
@@ -564,16 +564,18 @@ Video and audio specifications for the mezzanine file are defined in the followi
 Following these guidelines for video ad file submission will help streamline ad development
 and placement operations while providing the best experience possible in the user’s device for the bandwidth available. 
 </p>
+
+
+
                                 </div><!--//section-block-->
 								
                                 <div id="ad-macros"  class="section-block">
                                     <h3 class="block-title">Macros</h3>
-                                    <p>VAST player macros enable publisher’s media players to provide additional data points with ad requests, script requests, andtrackers. They allow for passing details such as the user agent and app where the VAST ad is serving.</p> 
+                                    <p>VAST player macros enable publisher’s media players to provide additional data points with ad requests, script requests, and trackers. They allow for passing details on serving environment (app/site/network channel), device (IP, user agent, make, model), user (consent and data privacy compliance (e.g. GDPR/CCPA/LGPD/COPPA), and content (ID, title, genre, category, rating, network/studio, etc.)
 
-VAST player macros are to be filled by the party that performs VAST HTTP requests. Most commonly, for both VAST URLs and tracking pixel URLs, this would be the video player that’s executing the ad or the SSAI server on behalf of the video player. </p>
+VAST player macros are to be filled by the party that performs VAST HTTP requests. Most commonly, for both VAST URLs and tracking pixel URLs, this would be the video player that’s executing the ad or the SSAI server on behalf of the video player. 
 
-Information that may be available via HTTP headers is not always consistent, and often publishers do not have control over what values are forwarded. Hence providing macros such as [DEVICEUA], [PAGEURL], and [SERVERUA] are recommended. These macros are also increasingly important as the industry moves away from VPAID and HTTP headers. For a complete list of available macros, please refer to the IAB VAST macro list page. 
-</p>
+Information that may be available via HTTP headers is not always consistent, and often publishers do not have control over what values are forwarded. Hence providing macros such as [DEVICEUA], [PAGEURL], and [SERVERUA] are recommended. These macros are also increasingly important as the industry moves away from VPAID and HTTP headers. For a complete list of available macros, please refer to the <a href="http://interactiveadvertisingbureau.github.io/vast/vast4macros/vast4-macros-latest.html">IAB VAST macro list page.</a></p>
 
                                 <div class="section-block">
                                     <div class="callout-block callout-info">
@@ -609,7 +611,7 @@ Information that may be available via HTTP headers is not always consistent, and
 </ul>
 
 <h6>SSAI and Media Player Macros</h6> 
-<p>Used to help identify the type of player technology that publisher uses.</p>
+<p>Used to help identify the type of player technology that the publisher uses.</p>
 
 <ul>
 	<li>[SERVERUA]</li>
@@ -623,16 +625,18 @@ Information that may be available via HTTP headers is not always consistent, and
                                 </div><!--//section-block-->
 								
                                 <div id="ad-bid-request"  class="section-block">
-                                    <h3 class="block-title">Bid Request</h3>
+                                    <h3 class="block-title">Bid Request Key Fields</h3>
                                     <p>RTB transactions are initiated when an exchange or other supply source sends a bid request to a bidder. The bid request consists of the top-level bid request object, at least one impression object, and may include additional optional objects providing impression context.</p>
 
-The top-level object (i.e., in JSON, the unnamed outer object) is denoted as <code>BidRequest</code> in the model. Of its direct subordinates, only <code>Imp</code> is technically required since it is fundamental to describing the impression being sold and it requires at least one of Banner (which may allow multiple formats), Video, Audio, and Native to define the type of impression (i.e., whichever one or more the publisher is willing to accept; although a bid will be for exactly one of those specified). An impression can optionally be subject to a private marketplace.</p>
+The top-level object (in JSON, the unnamed outer object) is denoted as <p class="tag">BidRequest</p> in the model. Of its direct subordinates, only <p class="tag">Imp</p> is technically required since it is fundamental to describing the impression being sold and it requires at least one of: Banner (which may allow multiple formats), Video, Audio, and Native to define the type of impression (whichever one(s) the publisher is willing to accept; though the bid will be for exactly one of those specified). An impression can optionally be subject to a private marketplace.</p>
 
-Other subordinates to the <code>BidRequest</code> provide various forms of information to assist bidders in making targeting and pricing decisions. This includes details about the user, the device they’re using, the location of either, regulatory constraints, and the content and media in which the impression will occur.
+Other subordinates to the <p class="tag">BidRequest</p> provide various forms of information to assist bidders in making targeting and pricing decisions. This includes details about the user, the device they’re using, the location of either, regulatory constraints, and the content and media in which the impression will occur.
 </p>
 
 <h6>Object: Video</h6>
-The Video object represents an in-stream video impression. Many of the fields are non-essential for minimally viable transactions but are included to offer fine control when needed. Video in OpenRTB generally assumes compliance with the VAST standard. As such, the notion of companion ads is supported by optionally including an array of Banner objects (refer to the Banner object in Section 3.2.6 of the OpenRTB 2.x Spec) that define these companion ads.
+<p>The Video object represents an in-stream video impression. Many of the fields are non-essential for minimally viable transactions but are included to offer fine control when needed. Video in OpenRTB generally assumes compliance with the VAST standard. As such, the notion of companion ads is supported by optionally including an array of Banner objects (refer to the Banner object in Section 3.2.6 of the OpenRTB 2.x Spec) that define these companion ads.</p>
+
+</div><!--//bid request-->
 
                                    <div style="color:red; padding-top:20px; padding-bottom:10px"><h4>OpenRTB Object for Video</h4></div>
                                     <div class="table-responsive">
@@ -647,52 +651,924 @@ The Video object represents an in-stream video impression. Many of the fields ar
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <th scope="row">mimes</th>
+                                                    <th scope="row"><p class="tag">mimes</p></th>
                                                     <td>string array; required</td>
                                                     <td>Content MIME types supported (video/x-ms-wmv, video/mp4, etc.)</td>
                                                     
                                                 </tr>
                                                 <tr>
-                                                    <th scope="row">minduration</th>
+                                                    <th scope="row"><p class="tag">minduration</p></th>
                                                     <td>integer; recommended</td>
                                                     <td>Minimum video ad duration (in seconds)</td>
                                                     
                                                 </tr>
                                                 <tr>
-                                                    <th scope="row">maxduration</th>
+                                                    <th scope="row"><p class="tag">maxduration</p></p></th>
                                                     <td>integer; recommended</td>
                                                     <td>Maximum video ad duration (in seconds)</td>
                                                     
                                                 </tr>
                                                 <tr>
-                                                    <th scope="row">protocols</th>
+                                                    <th scope="row"><p class="tag">protocols</p></th>
                                                     <td>integer array; recommended</td>
-                                                    <td>Array of supported video protocols. Refer to list 5.8 in OpenRTB documentation. At least one supported protocol must be specified in either the <code>protocol</code> or <code>protocols</code> attribute.</td>
+                                                    <td>Array of supported video protocols. Refer to list 5.8 in OpenRTB documentation. At least one supported protocol must be specified in either the <p class="tag">protocol</p> or <p class="tag">protocols</p> attribute.</td>
                                                     
                                                 </tr>
                                                 <tr>
-                                                    <th scope="row">protocol</th>
+                                                    <th scope="row"><p class="tag">protocol</p></th>
                                                     <td>integer; DEPRECATED</td>
-                                                    <td>NOTE: Deprecated in favor of <code>protocols</code>.</p>Supported video protocol. Refer to list 5.8 in OpenRTB documentation. At least one supported protocol must be specified in either the <code>protocol</code> or <code>protocols</code> attribute.</td>
+                                                    <td>NOTE: Deprecated in favor of <p class="tag">protocols</p>.</p>Supported video protocol. Refer to list 5.8 in OpenRTB documentation. At least one supported protocol must be specified in either the <p class="tag">protocol</p> or <p class="tag">protocols</p> attribute.</td>
+                                                </tr>
+												
+                                                <tr>
+                                                    <th scope="row"><p class="tag">w</p></th>
+                                                    <td>integer; recommended</td>
+                                                    <td>Width of the video player in device independent pixels (DIPS)</td>
+                                                </tr>
+												
+                                                <tr>
+                                                    <th scope="row"><p class="tag">h</p></th>
+                                                    <td>integer; recommended</td>
+                                                    <td>Height of the video player in device independent pixels (DIPS)</td>
+                                                </tr>
+												
+                                                <tr>
+                                                    <th scope="row"><p class="tag">startdelay</p></th>
+                                                    <td>integer; recommended</td>
+                                                    <td>Indicates the start delay, in seconds, for pre-roll, mid-roll, or post-roll ad placements. Refer to the video object in the current <a href="https://iabtechlab.com/standards/openrtb">OpenRTB spec</a> for additional generic values.</td>
+                                                </tr>
+												
+                                                <tr>
+                                                    <th scope="row"><p class="tag">placement</p></th>
+                                                    <td>integer</td>
+                                                    <td>Placement type for the impression. Refer to the video object in the current <a href="https://iabtechlab.com/standards/openrtb">OpenRTB spec</a> for accepted values.</td>
+                                                </tr>
+												
+                                                <tr>
+                                                    <th scope="row"><p class="tag">linearity</p></th>
+                                                    <td>integer</td>
+                                                    <td>Indicates if the impression must be linear, nonlinear, etc. If none specified, assume all are allowed. Refer to the video object in the current <a href="https://iabtechlab.com/standards/openrtb">OpenRTB spec</a> for accepted values.</td>
+                                                </tr>
+												
+                                                <tr>
+                                                    <th scope="row"><p class="tag">skip</p></th>
+                                                    <td>integer</td>
+                                                    <td><p>Indicates if the player will allow the ad to be skipped, where 0=no and 1=yes.</p> If a bidder sends markup or creative that is itself skippable, the Bid object should include the <p class="tag">attr</code>Refer to the video object in the current <a href="https://iabtechlab.com/standards/openrtb">OpenRTB spec</a> for details on the Bid opject.</td>
+                                                </tr>
+												
+                                                <tr>
+                                                    <th scope="row"><p class="tag">skipmin</p></th>
+                                                    <td>integer; default 0</td>
+                                                    <td><p>Videos of total duration greater than this number of seconds can be skippable; only applicable if the ad is skippable.</td>
+                                                </tr>
+												
+                                                    <th scope="row"><p class="tag">skipafter</p></th>
+                                                    <td>integer; default 0</td>
+                                                    <td><p>Number of seconds a video must play before skipping is enabled; only applicable if the ad is skippable.</td>
+                                                </tr>
+												
+                                                    <th scope="row"><p class="tag">sequence</p></th>
+                                                    <td>integer</td>
+                                                    <td><p>If multiple ad impressions are offered in the same bid request, the sequence number will allow for the coordinated delivery of multiple creatives.</td>
+                                                </tr>
+												
+                                                    <th scope="row"><p class="tag">battr</p></th>
+                                                    <td>integer array</td>
+                                                    <td><p>Blocked creative attributes. Refer to the video object in the current <a href="https://iabtechlab.com/standards/openrtb">OpenRTB spec</a> for attribute details.</td>
+                                                </tr>
+												
+                                                    <th scope="row"><p class="tag">maxextended</p></th>
+                                                    <td>integer</td>
+                                                    <td><p>Maximum extended ad duration if extension is allowed. If blank or 0, extension is not allowed. If -1, extension is allowed, and there is no time limit imposed. If greater than 0, then the value represents the number of seconds of extended play supported beyond the <p class="tag">maxduration</p> value.</td>
+                                                </tr>
+												
+                                                    <th scope="row"><p class="tag">minbitrate</p></th>
+                                                    <td>integer</td>
+                                                    <td><p>Minimum bitrate in Kbps.</td>
+                                                </tr>
+												
+                                                    <th scope="row"><p class="tag">maxbitrate</p></th>
+                                                    <td>integer</td>
+                                                    <td><p>Maximum bitrate in Kbps.</td>
+                                                </tr>
+												
+                                                    <th scope="row"><p class="tag">boxingallowed</p></th>
+                                                    <td>integer; default 1</td>
+                                                    <td>Indicates if letter-boxing of content of a 4:3 ratio placed in a 16:9 ratio is allowed, where 0 = not allowed, 1 = allowed.</td>
+                                                </tr>
+												
+                                                    <th scope="row"><p class="tag">playbackmethod</p></th>
+                                                    <td>integer array</td>
+                                                    <td>The event that causes playback to end. Refer to the video object in the current <a href="https://iabtechlab.com/standards/openrtb">OpenRTB spec</a> for end event details.</td>
+                                                </tr>
+												
+                                                    <th scope="row"><p class="tag">delivery</p></th>
+                                                    <td>integer array</td>
+                                                    <td>Supported delivery methods (e.g. streaming, progressive, etc.) If none specified, assume all are supported.</td>
+                                                </tr>
+												
+                                                    <th scope="row"><p class="tag">pos</p></th>
+                                                    <td>integer </td>
+                                                    <td>Ad position on screen. Refer to the video object in the current <a href="https://iabtechlab.com/standards/openrtb">OpenRTB spec</a> for position details.</td>
+                                                </tr>
+												
+                                                    <th scope="row"><p class="tag">companionad</p></th>
+                                                    <td>object array</td>
+                                                    <td>Array of <p class="tag">Banner</p> objects if companion ads are available. Refer to the video object in the current <a href="https://iabtechlab.com/standards/openrtb">OpenRTB spec</a> for banner object details.</td>
+                                                </tr>
+												
+                                                    <th scope="row"><p class="tag">api</p></th>
+                                                    <td>integer array</td>
+                                                    <td>TList of supported API frameworks for this impression. Refer to the video object in the current <a href="https://iabtechlab.com/standards/openrtb">OpenRTB spec</a> for list of values. If an API is not explicitly listed, it is assumed to be unsupported.</td> 
+                                                </tr>
+												
+                                                    <th scope="row"><p class="tag">companiontype</p></th>
+                                                    <td>integer array</td>
+                                                    <td>Supported VAST companion ad types. Refer to the video object in the current <a href="https://iabtechlab.com/standards/openrtb">OpenRTB spec</a> for list of VAST ad types. Recommended if companion <p class="tag">Banner</p> objects are included via the <p class="tag">companionad</p> array. If one of these banners will be rendered as an end-card, this can be specified using the <p class="tag">vcm</p> attribute with the particular banner.</td>
+                                                </tr>
+												
+                                                    <th scope="row"><p class="tag">ext</p></th>
+                                                    <td>object</td>
+                                                    <td>Placeholder for exchange-specific extensions to OpenRTB.</td>
                                                 </tr>
                                                 
                                             </tbody>
                                         </table>
 
-                                </div><!--//section-block-->
+                                </div><!--//table responsive-->
+								
+								<h6>Bid Request/Response Samples</h6>
+<p>The official OpenRTB Github repository offers a set of validated example requests. The following GitHub repository should be considered the canonical examples for implementers.</p> <p><a href="https://github.com/openrtb/examples">https://github.com/openrtb/examples</a></p>
+
+								<p>The following example illustrates a bid request for a video impression with two companion ad slots (1 expandable). Additionally, the video content itself is described in the "content" object. A few notes about specific fields in the example:</p>
+
+<ul>
+	<li><p class="tag">protocols:</p> Only VAST 2.0 and 3.0 are allowed. Note that a wrapper response is not allowed in this example.</li>
+	<li><p class="tag">sequence:</p> It is not explicitly included, so the default of “1” should be assumed.</li>
+	<li><p class="tag">battr:</p> User interactive and alert type ads (value “13” and “14”, respectively) are explicitly being blocked for both the video and its companions</li>
+	<li><p class="tag">pos:</p> Indicates this opportunity is “above the fold.”</li>
+	<li><p class="tag">api:</p> Indicates that VPAID 1.0 containers are explicitly supported. As such, the mime types supported for VPAID are only “application/x-shockwave-flash” and “application/javascript.” Note that there is an implicit restriction as to which protocol is allowed in which mime type. JavaScript support was not specified until VPAID 2.0, while Flash supports both VPAID 1.0 and 2.0.</li>
+	<li><p class="tag">companiontype:</p> Indicates only static or HTML resources are allowed.</li>
+</ul>
+
+                                 <div id="bid-request-example" class="section-block">
+                                     <div class="code-block">
+                                         <pre><code class="language-css">
+{ 
+	"id": "1234567893", 
+	"at": 2, "tmax": 120, 
+	"imp": [ 
+		{
+		"id": "1", "bidfloor": 0.03, 
+		"video": { 
+			"w": 640, "h": 480, "pos": 1, 
+			"startdelay": 0, "minduration": 5, "maxduration": 30,
+			"maxextended": 30, "minbitrate": 300, "maxbitrate": 1500,
+			"api": [ 1, 2 ], 
+			"protocols": [ 2, 3 ], 
+			"mimes": [ 
+				"video/x-flv", 
+				"video/mp4", 
+				"application/x-shockwave-flash", 
+				"application/javascript" 
+			], 
+			"linearity": 1, 
+			"boxingallowed": 1, 
+			"playbackmethod": [ 1, 3 ], 
+			"delivery": [ 2 ], 
+			"battr": [ 13, 14 ], 
+			"companionad": [ 
+				{ 
+					"id": "1234567893-1", 
+					"w": 300, "h": 250, "pos": 1, 
+					"battr": [ 13, 14 ], 
+					"expdir": [ 2, 4 ] 
+				}, 
+				{ 
+					"id": "1234567893-2", 
+					"w": 728, "h": 90, 
+					"pos": 1, 
+					"battr": [ 13, 14 ] 
+				} 
+			], 
+			"companiontype": [ 1, 2 ] 
+		} 
+	} 
+], 
+
+"site": { 
+	"id": "1345135123", "name": "Site ABCD", 
+	"domain": "siteabcd.com", 
+	"cat": [ "IAB2-1", "IAB2-2" ], 
+	"page": "http://siteabcd.com/page.htm", 
+	"ref": "http://referringsite.com/referringpage.htm", "privacypolicy": 1, 
+	"publisher": { 
+		"id": "pub12345", "name": "Publisher A" 
+	}, 
+	"content": { 
+		"id": "1234567", 
+		"series": "All About Cars", 
+		"season": "2", 
+		"episode": 23, 
+		"title": "Car Show", 
+		"cat": [ "IAB2-2" ], 
+		"keywords": "keyword-a,keyword-b,keyword-c" 
+	} 
+}, 
+
+"device": { 
+	"ip": "64.124.253.1", 
+	"ua": "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; rv:1.9.2.16) Gecko/20110319 Firefox/3.6.16",
+	"os": "OS X", 
+	"flashver": "10.1", "js": 1 
+},
+
+"user": { 
+	"id": "456789876567897654678987656789", 
+	"buyeruid": "545678765467876567898765678987654", 
+	"data": [ 
+		{ 
+			"id": "6", "name": "Data Provider 1", 
+			"segment": [ 
+				{ 
+					"id": "12341318394918", "name": "auto intenders" 
+				}, 
+				{ 
+					"id": "1234131839491234", "name": "auto enthusiasts" 
+				} 
+			] 
+		} 
+		] 
+	} 
+}</code></pre>
+                                      </div><!--//code-block-->
+                                  </div><!--//section-block-->
+
+								For more detailed information please refer to the most recent <a href="https://iabtechlab.com/openrtb">OpenRTB Specification</a>.
+								
+								</div><!--//section-block-->
 								
                                 <div id="ad-cats"  class="section-block">
-                                    <h3 class="block-title">CATS</h3>
-                                    <p>text</p>
+                                    <h3 class="block-title">Common Ad Transport Standard (CATS)</h3>
+                                    <p>The IAB Tech Lab Common Ad Transport Standard (CATS) standardizes communication
+between any two parties in the advertising technology ecosystem. While OpenRTB handles
+communication for real-time bidding (RTB) transactions, it focuses only on real-time bidding
+and leaves many use cases out of scope. A complimentary standard was needed for requesting ads both in a bidding context as well as outside of it. CATS has been created to service this need.</p>
+
+Common expected use cases for CATS include:</p>
+<ul>
+	<li>A publisher making an ad request to a publisher ad server endpoint</li>
+	<li>A publisher making an ad request for a creative resulting from a programmatic auction</li>
+	<li>An SSAI server making an ad request on behalf of a client device</li>
+	<li>A verification vendor proxying an ad request to insert measurement</li>
+	<li>A publisher ad server making an ad request</li>
+	<li>A creative auditing system making an ad request to validate the ad creatives against
+policies</li>
+</ul>
+
+Though CATS is meant to be a request standard that is agnostic of ad type, it was developed with an initial use case of VAST as a response protocol in mind. Currently, VAST macros serve as a means to provide additional crucial data points into an ad request. However,challenges such as HTTP GET request character limits and the use of illegal characters such as those seen frequently for privacy consent macros can result in broken tech. Alternately, CATS uses HTTP POST requests, allowing for rich structured data (such as a JSON document) to be passed in the body rather than a character limited URL.</p>
+
+As industry expectations increase for more seamless interoperability and communication across systems, the implementation of CATS rapidly becomes valuable. Therefore, it is highly recommended that the Digital Video ecosystem organizations, who currently rely on VAST macros, upgrade their technology to comply with CATS. Refer to the full <a href="https://iabtechlab.com/wp-content/uploads/2020/06/CATS-Common-Ad-Transport-Standard-final-june_2020.pdf">CATS v1.0.0 specification</a> for technical implementation details.
+</p>
                                 </div><!--//section-block-->
 								
                                 <div id="ad-creative-id"  class="section-block">
                                     <h3 class="block-title">Creative Asset ID</h3>
-                                    <p>text</p>
+                                    <p>VAST 4.x introduced Universal Ad-ID to address inconsistencies in creative identifiers assignment across various systems. This feature provides a means for an authoritative program such as Ad-ID or any company’s creative ID registration system to act as a registry in assigning a globally unique identifier that can be maintained and tracked across systems. </p>
+
+Without a standard identifier, two common issues occur in SSAI:</p>
+
+<ol>
+	<li>Different identifiers are used for the same creative (e.g., Creative A with ID=AB12, AB34, AB56, etc.).</li>
+	<li>The same identifiers are used for multiple creatives (Creative A with ID=ABCD, Revision 1/Creative B with ID=ABCD, Revision 2/Creative C with ID=ABCD).</li>
+</ol>
+
+The same identifiers are used for multiple creatives (Creative A with ID=ABCD, Revision 1/Creative B with ID=ABCD, Revision 2/Creative C with ID=ABCD).</p>
+
+The first issue results ina poor ad experience by subjecting consumers to ad repetitions. In this scenario, a consumer watches content and is shown the same ad back-to-back, or even worse, back-to-back-to-back. In the second example, the wrong ad is delivered to the consumer, which is bad for the publisher/advertiser. For stitching services to operate efficiently and ensure the correct ad is displayed, there needs to be a way to uniquely identify each piece of creative content across all ad systems.</p>
+
+While the <p class="tag">&#60UniversalAdID&#62</p> element is required for VAST 4.x, the spec states that the attribute value for idRegistry can be set to “unknown” if no common registry is used. This aspect has been a common factor leading to confusion and inconsistent implementations. The next section, “VAST 4” explains how to reduce that confusion.</p>
+
+<h5>VAST 4</h5>
+Moving forward, it is recommended that when sourcing VAST 4.x files, vendors should never use “unknown” as the value of the <p class="tag">&#60UniversalAdID&#62</p> element or its idRegistry attribute. Instead, in order of preference, vendors should:
+
+Use an authoritative program (such as the Ad-ID program in the United States, or Clearcast in the UK).
+Generate a UUID and use the canonical domain name of the vendor (i.e. ad server domain or any company that sources VAST files) as the idRegistry attribute.
+
+If the <p class="tag">&#60UniversalAdID&#62</p> element is provided along with a valid idRegistry attribute, the unique creative asset ID should be constructed by concatenating the value of the  <p class="tag">&#60UniversalAdID&#62</p> element, a dot and then the value of the idRegistry attribute.</p>
+
+<h6>Example</h6>
+VAST file:<br>
+<p class="tag">&#60UniversalAdID&#62idRegistry=”ad-id.org”>CNPA0484000H&#60&#47UniversalAdID&#62</p> 
+</p>
+Resulting ID:<br>
+<p class="tag">CNPA0484000H.ad-id.org</p></p>
+
+If the approach above is not possible, use the Mezzanine URL to identify the asset uniquely. The unique creative asset ID would then be constructed by hashing the <p class="tag">&#60Mezzanine&#62</p> file URL using the MD5 function.</p>
+
+<H5>VAST 2 & 3</h5>
+Because <p class="tag">&#60UniversalAdID&#62</p> and <p class="tag">&#60Mezzanine&#62</p> elements are not available in VAST versions before 4.x, the alternative approach for providing unique creative asset IDs is as follows. If the <p class="tag">&#60Creative&#62</p> element contains both id and adID attributes, the unique creative asset ID should be constructed by concatenating the value of the adID attribute, a dot and the value of the id attribute.</p>
+
+	<h6>Example:</h6>
+VAST file: <br><p class="tag">&#60Creative id=”120503″ adID=”119635032″&#62</p></p> 
+
+	Resulting ID: <br><p class="tag">119635032.120503</p></p>
+Refer to the <a href="https://iabtechlab.com/standards/vast">VAST 4.x spec</a> and the blog post on <a href="https://iabtechlab.com/blog/guidance-for-uniquely-identifying-creative-asset-ids-in-vast/">Guidance for Uniquely Identifying Creative Asset IDs in VAST</a> for more detailed information about Universal Ad-ID.</p>
+
                                 </div><!--//section-block-->
 								
 							</section><!--//doc-section (Ad Delivery)-->
-                                
+							
+							<section id="targeting" class="doc-section">
+                                <h2 class="section-title">Targeting</h2>
+								<p>The key to good ad experiences is the most relevant and engaging ads to the right audience. The challenge, of course, is that this has to be done with end-user privacy in mind. While the “cookie-apocalypse” has been a significant point of discussion in our industry when discussing browser-based environments, the CTV world does not run on cookies and so has not been a focal point of the cookie/privacy discussions. </p>
+								
+							
+								
+                                <div id="tar-IFA"  class="section-block">
+                                    <h3 class="block-title">IFA</h3>
+                                    <p>In traditional browser environments, ad platforms rely on semi-persistent HTTP cookies to identify a user. This is used to deliver targeted ads as well as to control the ad frequency and ad rotation. Due to the wide variety of different Smart TV, Connected Device and other over the top television (OTT) platforms, it cannot be guaranteed that devices support the traditional cookie-based semi-persistent or audience management for ad-related activities.  Without device or audience management, the same creative can serve more frequently than expected and frustrate audiences.</p>
+
+To maintain a high-quality audience experience within OTT environments, it is recommended that parties manage advertising-related activities through an identifier for advertising (IFA), while respecting the user’s privacy settings. This is in line with best practices within the mobile industry, making it easier for technology vendors to support the OTT IFA.</p>
+
+Users must be able to opt out of remarketing or audience measurement. This must be done by clearly offering settings in the app or device where a user can elect to opt out. This parameter, in turn, would be passed along with the IFA to measurement and ad platforms to ensure that they follow the users’ instructions. 
+</p>
+
+<img src="../assets/images/OTT_IFA_Infographic.png" width="80%" height="60%"/></p></p>
+
+<p>It is recommended that device manufacturers, app publishers, and ad servers/measurement platforms implement an Identifier for Advertising (IFA) and send the following three parameters as part of any ad request:</p>
+
+<ol>
+	<li>An Identifier For Advertising (ifa)</li>
+	<li>An associated IFA type (ifa_type)</li>
+	<li>Limit Ad Tracking (lmt) – an opt-out to respect the users’ privacy choices. </li>
+</ol>
+
+Some use cases might require the generation of an IFA that does not have a long life span. For example, Publishers or SSPs might generate a temporary IFA in the absence of an IFA from the publisher/device to support tasks like frequency capping.</p>
+Another use case of such a temporary IFA is for reach estimation by measuring a number of
+concurrent users. In these cases, the ifa_type should clearly be marked as a “sessionid”.</p>
+
+<h6>Example usage within ad requests:</h6>
+
+<p class="tag">https://adserver.example.com/adrequest?<span style="color:red; font-weight:bold">Ifa</span>=01234567-89ab-cdef-gh01-23456789abcd
+<span style="color:red; font-weight:bold">&ifa_type</span>=ppid&<span style="color:red; font-weight:bold">lmt=0</span></p></p>
+
+<p class="tag">https://adserver.example.com/adrequest?<span style="color:red; font-weight:bold">lmt=1</span></p></p>
+
+<p class="tag">https://adserver.example.com/adrequest?<span style="color:red; font-weight:bold">Ifa</span>=00000000-0000-0000-0000-
+000000000000<span style="color:red; font-weight:bold">&ifa_type</span>=rida&<span style="color:red; font-weight:bold">lmt=1</span></p></p>
+
+<p class="tag">https://adserver.example.com/adrequest?<span style="color:red; font-weight:bold">Ifa</span>=00000000-34sd-gfss-sd54-
+12345678abcd<span style="color:red; font-weight:bold">&ifa_type</span>=sspid&<span style="color:red; font-weight:bold">lmt=1</span></p></p>
+
+<p class="tag">https://adserver.example.com/adrequest?<span style="color:red; font-weight:bold">Ifa</span>=12340000-34sd-gfss-sd54-88223678xcdf&<span style="color:red; font-weight:bold">ifa_type</span>=sessionid&<span style="color:red; font-weight:bold">lmt=1</span></p></p>
+
+<h5>Guidelines for App Publishers</h5>
+In authenticated environments, a publisher generated IFA can be used to manage ad-related
+cross-platforms activities.</p>
+
+Device manufacturers and app publishers should follow both industry best-practice (aka 'app
+store submission guidelines) and adhere to regulatory and legal obligations for displaying the
+privacy policy within platforms and applications.</p></p>
+
+If the manufacturer's operating system provides a method for managing the identifier for
+advertising, OTT apps must use the manufacturer-supported method in preference to an
+in-app IFA. This ensures that the user has a standard mechanism for managing the identifier for
+advertising across different apps. The device manufacturer must provide a documented and
+supported application programming interface (API) for app publishers to read the identifier for
+advertising and users’ privacy preferences from within OTT apps.</p>
+
+If the device operating system does not provide a system-wide identifier for advertising, the
+publisher must implement the identifier for advertising (IFA) functionality within the OTT app.
+The user must be able to reset the identifier for advertising and elect limit ad tracking within one
+of the 'settings', 'about' or 'info' areas of the app.</p>
+
+It is recommended that access to the relevant privacy policy and terms of use should be located
+near the IFA-reset and limit ad tracking (LMT) settings within the publisher app user interface. </p>
+
+Where publishers employ server-side ad insertion (SSAI) or ad stitching, it is advised to work with server-side ad insertion vendors to ensure that the identifier for advertising (IFA) and limit ad tracking (LMT) remain respected. This value should be propagated to the ad server(s) from the server to server call.</p>
+
+<h5>Guidelines for Ad and Measurement Platforms</h5>
+Ad and Measurement platforms can use the identifier for advertising (IFA) for ad-related
+activities including, but not limited to, frequency capping, remarketing, reporting, audience
+measurement and fraud detection while respecting the user’s choice around tracking.
+If the ad request indicates that the user has elected to limit ad tracking by setting limit ad
+tracking (LMT) flag, it must be respected - especially with regard to remarketing or behavioral
+retargeting. If limit ad tracking is requested, the ad platform must ignore the IFA, even if it is
+included in the request. When limit ad tracking is requested, the ad platform must never pass
+the IFA to any 3rd party.</p>
+
+For more details and a list of platforms that currently support IFA refer to the <a href="https://iabtechlab.com/standards/guidelines-identifier-advertising-over-the-top-platforms/">Guidelines for Identifier for Advertising (IFA) on CTV/OTT platforms.</a></p>
+
+
+								</div><!--//section-block-->
+								
+                                <div id="tar-user-agent"  class="section-block">
+                                    <h3 class="block-title">User Agent Guidelines</h3>
+                                    <p>Accurate device information – type, operating system (OS), client software, and other data – is crucial in the advertising ecosystem. It allows for precise targeting, better creative delivery, analytics, and measurement, among other things. Knowing the screen size and other capabilities enables the best creative to be sent to the device. Reliable device identification in connected TV (CTV) / over-the-top (OTT) is essential for measurement because TV screen inventory is considered more valuable than inventory on other devices. </p>
+
+The only standard facility that transports device and client software information is the User-Agent HTTP request header. Currently, ad serving participants have no choice but to depend on the UserAgent header for the device determination solutions. However, the header value, its content, accuracy, and, at times, even availability are at the mercy of the device manufacturers, app developers, and software vendors.</p>
+
+The ideal solution is for device platforms to provide a well-structured and usable user agent, which the publisher cannot change. This increases the level of trust regarding the validity of the user agent in systems that consume the information. The following three recommendations were developed to improve current methods for identifying user agents.</p>
+
+<div style="margin-left: 20px;">
+
+<ol style="font-weight: bold;"><li><h6>Recommendation for CTV device platforms and app developers/publishers:</h6></li></ol></p>
+
+<p style="margin-left: 40px;">Provide enough details in the User-Agent header to allow it to be consistently differentiated from the user agent of other devices. Using the following pattern to build the user agent will offer a consistent structure for all parties who consume the details:</p>
+
+<p class="tag" style="margin-left: 40px;">&#60device info&#62 &#60os name&#62/&#60os version&#62 &#60app name&#62/&#60app version&#62 &#60other info&#62</p></p>
+
+<p style="margin-left: 40px;">For example:</p>
+<p class="tag" style="margin-left: 40px;">DeviceBrand DeviceModel OSName/1.2.3 AppName/1.2.3 LibName/1.2.3</p></p>
+
+<p style="margin-left: 40px;">We also recommend that platforms be conservative in adding unnecessary information to the User Agent string, and also in encoding practices.</p>
+
+<p style="margin-left: 40px;">Finally, we recommend that platforms submit their User-Agent header value to the IAB Spiders and Bots white list so that it is not considered a bot, and can be a signal used to determine the device information.</p>
+
+<p style="margin-left: 40px;">Even with the above guidance, we are aware that this recommendation might not work for all device platforms. To that end, we invite all the OTT device platforms to discuss the challenges with the IAB Tech Lab to develop a solution that best addresses the concerns of the advertising ecosystem.</p>
+
+<ol start=2 style="font-weight: bold;"><li><h6>Recommendation for device detection vendors:</h6></li></ol></p>
+
+<p style="margin-left: 40px;">One of the challenges is the inconsistent device types returned across various device detection vendors. Ask vendors to use the same mechanism to provide the user agent. One option is using the IAB Tech Lab’s Spiders and Bots white list as a starting point, but other options are available. </p>
+
+<ol start=3 style="font-weight: bold;"><li><h6>Recommendation for alternate or supporting signals:</h6></li></ol></p>
+
+<div style="margin-left: 20px;">
+
+<ul>
+	<li>On device platforms where user agent values are not consistently provided, publishers
+should attempt to provide the UA themselves, following the guidance provided above. When VAST is used, the “DEVICEUA” macro should be populated correctly.</p></li>
+
+	<li>Exchanges should be consistent with the user agent values used between bid requests and tracking pixels so that classification is consistent between parties to the transaction – i.e. Demand-side platform (DSP), third-party ad server, verification vendor, etc.</p></li>
+
+	<li>DSPs can consume the “type” field from the device object of the OpenRTB bid request to use as a hint when conventional user-agent string parsing fails to return a result.</p></li>
+
+For additional details, refer to the <a href="https://iabtechlab.com/blog/guidelines-ctv-ott-device-and-app-identification/">OTT/CTV Preliminary User Agent Guidelines.</a></p>
+</div>
+								</div><!--//section-block-->
+								
+                                <div id="tar-ctv-app-id"  class="section-block">
+                                    <h3 class="block-title">CTV App ID Guidelines</h3>
+                                    <p>Unique app identifiers within OTT inventory are crucial for buyers, first and foremost as a way of knowing which apps they are buying, and also in targeting, blacklisting, brand safety and fraud prevention. In the same way, domains can be used to identify and understand web traffic, buyers need a standardized way to identify and understand what apps they are buying on. This unique store ID is also necessary for fraud prevention specs like the IAB Tech Lab’s app-ads.txt.</p>
+
+To have a standardized approach across device types, the same information should be
+used to identify app inventory whether on mobile, tablet, or CTV devices. The unique identifier
+assigned to a given app when integrated in an app store (the store ID) should be used for the
+purposes of identifying an app. This is the standard practice for mobile apps and should be
+applied to apps on CTV devices. </p>
+
+App store IDs are named and formatted differently across different app stores, but the core purpose is the same: a way to identify a specific app that is unique, persistent and won’t become obsolete when apps change names. IDs that are not unique within the app store (like the “bundle id” in iOS/tvOS) should not be used as the unique identifier. </p>
+
+The platforms must meet these requirements to qualify as having a valid app store: </p>
+<ul>
+	<li>Exposing a consistent and unique store ID for each individual app. </li>
+	<li>A crawlable, web-based app store URL that has a unique URL for each app available and publishes app metadata including the developer name.</li>
+</ul>
+
+<h6>Examples:</h6>
+
+<strong>Platform:</strong> iOS & tvOS <br>
+<strong>ID:</strong> 886445756 (Numeric iOS store ID auto-generated by Apple App Store.)<br>
+<strong>Where to find ID:</strong> https://apps.apple.com/us/app/tubi-watch-movies-tv-shows/id886445756</p>
+
+<strong>Platform:</strong> Android (mobile & CTV)<br>
+<strong>ID:</strong> com.tubitv (Developer defined alpha-numeric value that is unique across the Google Play store, often in a com.appname format)<br>
+<strong>Where to find ID:</strong> https://play.google.com/store/apps/details?id=com.tubitv</p>
+
+For those platforms where an app store does not exist, we recommend publishers use the following format for store IDs: <p class="tag">appname.deviceplatform</p> (e.g. com.nbcu.peacock.x1).</p>
+
+Communication of this unique identifier should be passed in:</p>
+
+<ul>
+	<li>the <p class="tag">app.bundle</p> field in OpenRTB 2.x.</li>
+	<li>the <p class="tag">app.storeid</p> field In AdCOM 1.0 (used in OpenRTB 3.0)</li>
+	<li>the <p class="tag">[STOREID]</p> macro in the VAST ad requests and tracking pixels (as defined in VAST 4.x specs)</li>
+</ul>
+
+In order to correctly identify the app store, the app store URL should also be passed in:</p>
+
+<ul>
+	<li>the <p class="tag">app.storeurl</p> field in OpenRTB</li>
+	<li>the <p class="tag">[STOREURL]</p> macro in VAST ad requests and tracking pixels (as defined in VAST 4.x specs)</li>
+</ul>
+
+For additional detail and a list of verified app stores refer to the <a href="https://iabtechlab.com/blog/guidelines-ctv-ott-device-and-app-identification/">Guidelines for CTV/OTT Device and App Identification.</a></p>
+								</div><!--//section-block-->
+								
+                                <div id="tar-taxonomy"  class="section-block">
+                                    <h3 class="block-title">Content Taxonomy</h3>
+                                    <p>The IAB Tech Lab Content Taxonomy 2.x provides a “common language” that all parties—publishers, Supply-Side Providers (SSPs), Demand-Side Providers (DSPs), verification vendors, and advertisers—can use and understand when describing the content of a page, app, or other user environment. The content taxonomy is useful in two main use cases—contextual targeting and brand safety/suitability. </p>
+
+The IDs within the Taxonomy specs should be used when tagging content. The IDs are alphanumeric strings (though a large number are currently sequential numbers to maintain backward compatibility) associated with each category or orthogonal attribute. The implementations involved may be different depending on the application—OpenRTB (real-time bidding) or digital video ad serving template (VAST) or proprietary application programming interfaces (APIs)—but the most common usage is to associate a piece of content with an array of IDs. </p>
+
+With OpenRTB / AdCOM (Advertising Common Object Model), the “cat” attribute should be used to transmit a list of categories associated with the content, and the “cattax” attribute should be set to 2 (for Content Taxonomy version 2.x). These attributes are available on Ad, Site, App, Publisher, Producer, and Content objects. 
+</p>
+
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Attribute</th>
+                                                    <th>Type</th>
+                                                    <th>Description</th>
+                                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row"><p class="tag">cat</p></th>
+                                                    <td>string array</td>
+                                                    <td>Array of content categories that describe the ad using IDs from the taxonomy indicated in <p class="tag">cattax</p>. Implementer should ensure compliance with regional legislation around data usage and sharing</td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"><p class="tag">cattax</p></th>
+                                                    <td>integer; default 2</td>
+                                                    <td>The taxonomy in use for the <p class="tag">cat</p> attribute.</td>
+                                                    
+                                                </tr>
+											</table>
+										</div>
+										
+<p>For example, in the following hypothetical piece of content, if the content taxonomy matches are:</p>
+
+<div style="margin-left: 40px;">
+
+Content Categories: Movies/Drama Movies (333), Movies/World Movies(337)<br>
+Content Channel: Voice Activated Channels (1009)<br>
+Content Type: Entertainment Content (1014)<br>
+Content Media Format: Video (1028)<br>
+Content Language: en (1068)<br>
+Content Source: Professionally Produced (1215)<br>
+</div></p>
+The OpenRTB/AdCOM snippet on the content object would be: 
+
+                                 <div id="taxonomy-code" class="section-block">
+                                     <div class="code-block">
+                                         <pre><code class="language-xml">
+“content”: {
+…
+“cat”: [“333”, “337”, ”1009”,”1014”,”1028”,”1068”,”1215”],
+“cattax”: “2.1”,
+…
+ } 
+</code></pre>
+</div>
+</div>
+Similarly, in VAST, the “CONTENTCAT” macro can be used to pass the relevant set of categories as follows:
+
+                                 <div id="taxonomy-code-2" class="section-block">
+                                     <div class="code-block">
+                                         <pre><code class="language-xml">
+CONTENTCAT = “333”,”337”,”1009”,”1014”,”1028”,”1068”,”1215”
+</code></pre>
+</div>
+</div>
+Providing context: When making ad requests, publishers and SSPs should tag each piece of content with the relevant content categories from the Content Taxonomy and provide those in the OpenRTB or VAST bid request. It is very likely that the buy side platforms will want to perform their own analysis using ad verification vendors of the content categories, as well as the floor & suitability checks.
+</p>
+For more detailed information refer to the <a href="https://iabtechlab.com/standards/content-taxonomy/">Content Taxonomy</a> documentation.
+
+
+
+								</div><!--//section-block-->
+								
+                                <div id="tar-rearc"  class="section-block">
+                                    <h3 class="block-title">Project Rearc</h3>
+                                    <p>The adoption of standards such as IFA, User Agent Guidelines and CTV App ID Guidelines have vastly improved targeting capabilities in the realm of video advertising. Yet, one need only look to adjacent mediums to see the writing on the wall for mechanisms that rely to an extent on identifiers that may not be viable in a privacy-centric future. </p>
+
+With the loss of third-party cookies across all browsers and with imminent changes to mobile ad IDs, IAB Tech Lab has been collaborating with the ad and media industry to develop privacy-preserving specifications and best practices to support the development of open-source and proprietary solutions. </p>
+
+In partnership with PRAM (Partnership for Responsible Addressable Media), which brings together business, policy, and technical efforts across a full range of industry stakeholders, Tech Lab has released initial specifications and best practices to support re-architecting digital media for addressability, accountability, and privacy. </p>
+
+It is recommended that all organizations in the digital video advertising industry become familiar and, where possible, implement best practices in accordance with the platforms and standards that encompass Project Rearc. For more detailed information see <a href="https://iabtechlab.com/project-rearc">https://iabtechlab.com/project-rearc/</a> </p>
+
+								</div><!--//section-block-->
+								
+                            </section><!--//doc-section (Targeting)-->    
+							
+							<section id="measurement" class="doc-section">
+                                <h2 class="section-title">Measurement</h2>
+																
+								
+                                <div id="measure-vast"  class="section-block">
+                                    <h3 class="block-title">VAST Tracking</h3>
+                                    <p>VAST enables tracking by specifying a number of specialized elements that map to media playback events, such as start or completion, user interactions, verification measurements, etc. Each element contains a url of a server-side resource, which historically has been a 1x1 pixel image, but may also be a script or document. Calls to these resources are counted by the ad server or other measurement vendor to tally up the total for a specific event.</p>
+
+The publisher is responsible for making the server-side request associated with a specific ad lifecycle event. These events may originate in a client-side player or (in some SSAI cases) at the publisher server. If the tracking request comes from the publisher server, extra care must be taken to make sure that the calls are made concurrently with the corresponding playback events, and any missing client-side information (user agent, etc) should be passed along via headers or other mechanisms.</p>
+
+The media player invokes tracker requests in response to the corresponding tracker event as soon as the event occurs. Advertisers and publishers depend on accurate tracking records for billing, campaign effectiveness, market analysis, and other critical business intelligence and accounting processes. Good tracking practices throughout the industry are important to the success and growth of digital video and audio advertising.</p>
+
+VAST allows for multiple impression URIs for tracking. Multiple impression trackers enable the ad server to share impression-tracking information with other ad serving systems, such as a vendor or partner ad server employed by the advertiser. The media player is required to send all impressions as close as possible to the same time. Any significant delay between impression logs may result in discrepancies between ad serving systems.</p>
+
+For more detailed information regarding VAST Compliance refer to Section 2 of the <a href="https://iabtechlab.com/standards/vast/">VAST 4.x specification.</a></p>
+
+								</div><!--//section-block-->
+								
+								
+                                <div id="measure-headers"  class="section-block">
+                                    <h3 class="block-title">Headers in Server-to-Server (S2S) Ad Requests</h3>
+                                    <p>With client-side ad tracking, the player (client ) sends tracking included in the VAST tag and uses cookies to determine which device executed the ad. However, in server-side ad-stitching, the player may not be able to process ad tracking, and the ad-stitching service cannot access cookies used in traditional client-side tracking. Instead, the ad-stitching service must identify devices where ads play by a combination of other methods.</p>
+
+When an ad-stitching service is involved, the ad-stitching server may send tracking on the
+player’s behalf. This server-to-server tracking process is problematic because all the
+tracking is coming from one IP address. To an ad server that is receiving tracking
+information, the reports look similar to invalid traffic. In addition, the server is initiating the
+request on behalf of the client, so it is important to separate information describing the
+server itself from information describing the client.<p>
+
+To avoid being mistaken as fraudulent traffic, ad stitching providers must include with their ad tracking requests the following HTTP headers: </p>
+
+<ul>
+	<li><p class="tag">X-Device-IP</p> set to the IP address of the device on whose behalf this request is being made.</li>
+	<li><p class="tag">X-Device-User-Agent</p> set to the User-Agent of the client on whose behalf the request is being made. </li>
+</ul>
+
+The requester should also include the following headers, if available: </p>
+
+<ul>
+	<li><p class="tag">X-Device-Referer</p> set to the Referer header value that the client would have used when making a request itself. </li>
+	<li><p class="tag">X-Device-Accept-Language</p> set to the Accept-Language header value that the client would have used when making a request itself. </li>
+	<li><p class="tag">X-Device-Requested-With</p> set to the X-Requested-With header value that the client would have used when making a request itself.</li>
+</ul>
+
+The requester may also include other HTTP headers that the client would have sent itself using the <p class="tag">X-Device-</p> prefix. The information included in these headers must match the information in the original ad request payload.</p>
+
+While these recommendations for tracking support server-side tracking, IAB Impression Measurement Guidelines developed with the Media Rating Council (MRC) favor client-side tracking. "The Measurement Guidelines require ad counting to use a client-initiated approach; server-initiated ad counting methods (the configuration in which impressions are counted at the same time the underlying page content is served) are not acceptable for counting ad impressions because they are the furthest away from the user actually seeing the ad. Measurement counting may happen at the server side as long as it is initiated based on client-side events and measurement assets. However, pass-through methods (where client-initiated measurement is passed to server-side collection) of signaling interactions detected on the client side from server infrastructure are acceptable."</p>
+
+In general, an ad-stitching service may have little or no control over ad play once the ad is stitched into the content and streamed to the client. Impression reporting may vary by implementation. For the ad stitching service in situations where the client cannot count impressions, an impression could be reported as the ad is sent on the stitched stream and therefore be as close as possible to the opportunity to play. Alternatively, a session-oriented ad-stitching service may report impressions from a given session at session completion. However, any impression measurement beyond the ad-stitched stream is out of the ad stitching services’ control and should be counted by the player whenever possible. Auditing for compliance with IAB Viewable Ad Impression Measurement Guidelines should focus on disclosing the process by which impressions are counted and any limitations with reporting impressions in certain situations and environments.</p>
+
+For more detailed information regarding VAST Ad Serving and Tracking refer to Section 1 of the <a href="https://iabtechlab.com/standards/vast/">VAST 4.x specification</a>.</p>
+								</div><!--//section-block-->
+								
+                                <div id="measure-vpaid"  class="section-block">
+                                    <h3 class="block-title">VPAID Deprecation and the Move to Open Measurement</h3>
+                                    <p>A key reason some video publishers have avoided using VAST, has been lack of quality control. Along with the IAB Video Player-Ad Interface Definition (VPAID), VAST can deliver ads programmatically or include ads with complex interactions. If a player isn't programmed to accept VPAID ads, the ad cannot be executed. Even when the player does accept VPAID ads, performance may be slow and cause latency in load times. In the meantime, the audience experiences a delay or a malfunction in their viewing experience. Additionally verification vendors have been known to use VPAID for measurement verification instead of using it for ad interaction as VPAID was intended. This has made measurement a challenge in environments where VPAID is not compatible such as with SSAI.</p>
+
+Publishers and ad vendors need a way to separate the video file from its interactive and verification components to ensure that ads play in systems that cannot execute these components on its own. A VAST tag that provides the video file separate from APIs can display more successfully across platforms and devices. </p>
+
+VAST 4 offers a designated <p class="tag">&#60AdVerifications&#62</p> space for inserting ad verification APIs, enabling a more streamlined process for executing files strictly intended for ad verification. Open Measurement (OM) is expected to be used for this purpose. In addition, a secondary impression element, the <p class="tag">&#60ViewableImpression&#62</p> element, has been added to allow publishers the option to track viewability on their inventory. While support for Secure Interactive Media Interface Definition (SIMID) delivered via the <p class="tag">&#60InteractiveCreative&#62</p> node is the replacement for VPAID to support interactive use cases.</p>
+
+<h5>Handling MediaFile Nodes During the Transition from VPAID</h5>
+One of the goals of VAST4 is to eliminate the practice of using the MediaFile node to deliver
+executable code (usually VPAID). To achieve this goal, the AdVerifications Node and the InteractiveCreativeFile were added in VAST 4, so that executable code for measurement and for interactivity could be delivered separately from the MediaFile. VPAID is being replaced by OMID for verification/measurement and SIMID for interactivity. </p>
+
+However, adoption of new protocols require time and so there will be a transition period
+where VPAID remains in use. With VAST 4.1, the working group has also deprecated the
+“apiFramework” attribute on the MediaFile node, which enables the delivery of VPAID.
+During the transition period, VAST 4.2 tags will likely have both the AdVerifications node for
+Open Measurement, alongside a VPAID MediaFile element.</p>
+
+The following recommendations for both publishers and tag creators are intended to help during
+this transition period.</p>
+
+<h6>For VAST tag creators (both direct as well as wrapped tags)</h6>
+VAST tag owner should plan to deliver the relevant VAST content based on information inthe ad requests (OpenRTB and via VAST ad request macros). Use the <p class="tag">APIFRAMEWORKS</p> macro.
+
+<ol>
+	<li>When a request indicates OMID support and the ad is configured to user OMID script(s), include the AdVerifications node (or extensions node with type AdVerifications for the VAST versions before 4.1) to include verification scripts.</li>
+	<li>If VPAID support is indicated in the request and the tag creator requires VPAID support (for interactivity or ad blocking), include the following in the VAST tag.</li>
+	<ol style="list-style-type: lower-alpha; padding-bottom: 0;">
+	  <li>The AdVerifications node (or extensions node with type AdVerifications for pre VAST 4.1)</li>
+	  <li>The VPAID file type MediaFile node (for Blocking or Interactivity)</li>
+  </ol>
+  <li>If OMID/VPAID support status is not known and there is no hard requirement on VPAID use from the buyer, ensure that the VAST tag contains all 3 of the following so that the publisher has all resources available:</li>
+	<ol style="list-style-type: lower-alpha; padding-bottom: 0;">
+  	  <li>The AdVerifications node (or extensions node with type AdVerifications for pre VAST 4.1)</li>
+	  <li>The VPAID file type MediaFile node (for Blocking or Interactivity)</li>
+	  <li>One or more non-VPAID (video creative) MediaFile nodes.</li>
+  </ol>
+</ol>
+
+
+<h6>For Publishers</h6>
+For best results, send information in the ad request (OpenRTB and VAST ad request macros) about capabilities of the video player. Use the APIFRAMEWORKS macro. Based on the standards supported, execute in this order for best results:
+<ol>
+	<li>If OMID is supported, run the AdVerifications node (for Open Measurement) - and the video creative MediaFile</li>
+	<li>If OMID is not supported but VPAID is supported and VPAID MediaFile node is available in VAST tag, run VPAID</li>
+	<li>If OMID and VPAID are supported, run both AdVerifications node and VPAID</li>
+	<li>If OMID and VPAID not supported, run one of the non-VPAID MediaFile nodes.</li>
+</ol>
+
+The above is only a recommendation and might not work in all cases. Publishers can decide
+to run any MediaFile they deem appropriate for their use cases, so as always, please ensure that your integrations are working as expected and per your business agreements. Publishers and technology vendors are responsible for testing the various combinations above and ensure that potential issues like double counting or namespace clashes are correctly handled.
+</p>
+								</div><!--//section-block-->
+								
+								
+                                <div id="measure-om"  class="section-block">
+                                    <h3 class="block-title">Open Measurement</h3>
+                                    <p>With the introduction of the AdVerification node in VAST 4.0, it became possible to reference verification resources while removing them from the critical rendering path. But VAST 4.0 was incomplete – a new API was required to describe how this new integration should actually work.</p>
+									
+Open Measurement SDK (OMSDK) and the Open Measurement Interface Definition (OMID) was originally intended to enable verification specifically in mobile apps (including video formats). With VAST 4.1 and the latest revisions to AdVerification, it is now possible to include OM third-party verification code with your video ad that will be able to measure whether it is served to a web site, an app, or anywhere else OMID is available.</p>
+
+The below examples demonstrate how verification providers can structure their tags to ensure that they are selected for measurement within the supported environments.
+</p>
+
+An optional VerificationParameters node allows for vendors to define external data required for their vendor script in order to execute and collect measurement signals. VAST 4.1-compliant players can also send a message when verification code fails to execute for any reason. A verificationNotExecuted tracking event can provide insight into these situations (e.g. when OMID is not yet supported).</p>
+
+								</div><!--//section-block-->
+								
+								
+								<div id="measure-macros"  class="section-block">
+                                    <h3 class="block-title">Macros</h3>
+                                    <p>The following VAST macros were created to support OM integrations.</p>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Macro</th>
+                                                    <th>Description</th>
+                                                    <th>Example</th>
+                                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row"><p class="tag">[EXTENSIONS]</p></th>
+                                                    <td>List of VAST Extensions type attribute values that the player / client supports. Can be used to indicate support for the OMID AdVerifications extension, proprietary extensions, or future standardized extensions</td>
+                                                    <td><p class="tag">AdVerifications,extensionA,extensionB</p></td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"><p class="tag">[OMIDPARTNER]</p></th>
+                                                    <td>Required if OM is supported. An identifier of the OM SDK integration. This is the same as the “name” and “versionString” parameters of the OMID Partner object. This will allow creative providers to determine if the OM partner integration is acceptable.</p>
+Note - This value is essential for communicating the certification status of the OMID integration. If partner ID is not shared, verification vendors will not be able to properly measure and report on this inventory. If partner name is not available, use “unknown”.
+</td>
+                                                    <td>Unencoded:<br><p class="tag">MyIntegrationPartner/7.1</p></p>Encoded:<br><p class="tag">MyIntegrationPartner%2F7.1</p>
+													</td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"><p class="tag">[VERIFICATIONVENDORS]</p></th>
+                                                    <td>List of VAST Verification vendor attribute values that the player / client supports</td>
+                                                    <td><p class="tag">moat.com-omid,ias.com-omid,doubleverify.com-omid</p></td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"><p class="tag">[APPBUNDLE]</p></th>
+                                                    <td>Required if OM for App is supported. For app ads, a platform-specific application identifier, bundle or package name and should not be an app store ID such as iTunes store ID. Where required and applicable, but unknown or unavailable, -1 or -2 must be set, as described in 6.1. When required and not applicable (such as in an app), 0 must be set.</td>
+                                                    <td><p class="tag">com.example.myapp</p></td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row"><p class="tag">[PAGEURL]</p></th>
+                                                    <td>Required if OM for Web is supported.  The full URL of the top level page where the end user will view the ad. Where required and applicable, but unknown or unavailable, -1 or -2 must be set, as described in 6.1. When required and not applicable (such as in an app), 0 must be set.</td>
+                                                    <td>Unencoded:<br><p class="tag">https://www.mydomain.com/article/page</p></p>Encoded:<br><p class="tag">https%3A%2F%2Fwww.mydomain.com%2Farticle%2Fpage
+</p></td>
+                                                    
+                                                </tr>
+											</table>
+										</div>
+									
+									<h5>OM Web Video SDK</h5>
+									The Open Measurement Working Group developed the OM Web Video SDK to standardize the way that the Open Measurement Interface Definition (OMID) signals are collected in web video advertising, specifically in web video players that load and render viewable content exclusively through HTML5. A key feature of the OM Web Video SDK is the ability for publishers to operate under different modes of access that allow them to manage the kind of access third-party scripts have over their content and applications. This includes Creative Access, Limited Access, and a new access mode for web called Domain Access. </p>
+
+							You can read the full details of each access mode in the integration guides. </p>
+
+									<h5>Open Measurement for CTV</h5>
+									Open Measurement was originally started to support mobile platforms by providing a common, shared SDK that all publishers can use and all verification vendors can trust. OM has now been expanded to the web (as a replacement for VPAID). We have also seen support for SSAI in some implementations, along with a mobile OM client. The vision for Open Measurement is to have a common API (Open Measurement Interface Definition or OMID) that third-party verification vendors can integrate with, along with SDKs for every platform.</p>
+
+									The working group continues to look for solutions to improve and expand SSAI support, as well as client-side CTV support in Open Measurement. The CTV plans include relatively quick wins like porting OM to Apple tvOS and Android TV, while also working with other platforms to determine the best way to implement support on those platforms. </p>
+
+									For more detailed information on OMID, the compliance program and integration guides refer to the <a href="https://iabtechlab.com/standards/open-measurement-sdk/">Open Measurement standards webpage</a>.
+									
+								</div><!--//section-block-->
+								
+								
+                            </section><!--//doc-section (Measurement)-->
+							
+							<section id="interactivity" class="doc-section">
+                                <h2 class="section-title">Interactivity</h2>
+								
+								
+								
+                                <div id="act-vpaid"  class="section-block">
+                                    <h3 class="block-title">VPAID: Video Player-Ad Interface Definition</h3>
+                                    <p>See sections on VPAID Deprecation & SIMID.
+</p>
+								</div><!--//section-block-->
+								
+								
+                                <div id="act-simid"  class="section-block">
+                                    <h3 class="block-title">SIMID: Secure Interactive Media Interface Definition</h3>
+                                    <p>Secure Interactive Media Interface Definition (SIMID) is a standard for providing rich interactivity in the context of streaming audio and video (media) ads. While the Video Ad Serving Template (VAST) standard addresses how publishers discover various metadata assets related to an ad campaign, SIMID addresses how the publisher’s media player should communicate and interface with a rich interactive layer and vice versa. As such, one can think of the SIMID creative as one of the assets listed in a VAST document.</p>
+
+A main tenet of SIMID is the separation of the interactive layer from the media asset. This clear separation allows publisher players to be in control of their streams and enables use cases such as server-side ad insertion (SSAI), as well as live streaming.</p>
+
+SIMID was built with strong security from the ground up, and is designed to be sandboxed from the media player, providing peace of mind to publishers when serving ads from third party services. SIMID aims to provide the tools and controls to allow creatives to offer rich augmented user experiences while degrading gracefully if certain features are not supported.</p>
+
+[image]
+
+SIMID is part of a broader effort to replace the older VPAID standard. While Open Measurement replaces the use case of verification and measurement, SIMID replaces the use case of interactive streaming media ads, the original intended purpose of the VPAID standard. SIMID provides a path for VPAID deprecation and allows the industry to move to more secure and transparent standards. SIMID aims to gain broad industry adoption by ensuring that the standard is focused on the primary use case of interactivity.</p>
+
+The use of HTML is required for the SIMID creative, but not the publisher property hosting that creative. As long as the publisher can load HTML and communicate with it over the standard postMessage API, it can support SIMID. In practice, this means that SIMID can be hosted in web page iframes, mobile app web views, and other platforms.</p> 
+
+Certain devices, including TV sets and OTT boxes, restrict loading of external assets, have limited HTML rendering capabilities, or are unable to display HTML along with audio or video. These devices are incapable of implementing SIMID. Devices that support HTML and JavaScript can support SIMID - on both client side as well as in server side ad insertion scenarios.</p>
+
+[image]
+
+A SIMID creative can be included in a VAST document by way of an <InteractiveCreativeFile> element. The text within this element must be a url which returns an HTML document. When loaded into an iframe by a media player, this HTML document will define the SIMID creative’s content, and will direct the web browser or host application to load any additional assets required by that creative (images, CSS, scripts, etc.). The <InteractiveCreativeFile> element is defined as a child of the <MediaFiles> element in VAST 4.0.</p>
+	
+[code image]
+
+<h5>Player and Creative Communication</h5>
+A media player and a SIMID creative communicate by sending serialized messages back and forth to each other.</p>
+
+Because a SIMID creative is an HTML document that is served from an advertiser’s web domain, and it is loaded by a media player into an iframe within a web page hosted on a different domain, loading the creative requires the creation of a cross-origin iframe (also known as an "unfriendly iframe"). Due to browser sandbox security restrictions, JavaScript communication across this type of iframe can only be achieved via the standard postMessage API.</p>
+
+See the full <a href="https://interactiveadvertisingbureau.github.io/SIMID/">SIMID spec for more information.</a>
+</p>
+								</div><!--//section-block-->
+								
+                                <div id="act-vast"  class="section-block">
+                                    <h3 class="block-title">VAST Interactive Template</h3>
+                                    <p>While interactive video ads command a premium, they are not supported on all platforms or
+by all publishers. While this is partly due to concerns around VPAID, which are being addressed by VAST4 and the replacement for VPAID, the execution of unknown code may never be allowed in many cases. To address this, VAST 4.1 introduces the concept of “VAST Interactive Templates”. These are interactive experiences that only require some visual assets (images, css, etc.) and some instructions/metadata in the VAST tag. The publisher implements the interactive code and uses the metadata to run the interactive ad. </p>
+
+In VAST 4.1 we have included an “end-card” based on a use case that has already been informally implemented in the industry. </p>
+
+<h5>Companion as End-Card<h5>
+Companion Ads are secondary ads included in the VAST tag that accompany the
+video/audio ad. The <CompanionAds> element is a container for one or more <Companion>
+elements, where each Companion element provides the creative files and tracking details.
+Companion Ads, including any creative, may be included in both InLine and Wrapper
+formatted VAST ads.</p>
+
+A value of "end-card" signals to the player that this companion ad is meant to be shown
+after the video stops playing. The end-card should match the dimensions of the preceding
+video. If the companion width and height are not zero, the player may use these values to
+infer the aspect ratio of the companion ad.</p>
+
+Companion duration is a new consideration for the end-card and assumed to be controlled
+by the publisher player/SDK and communicated as part of the publisher ad format specs.
+Known variations in market include an “infinite” duration, which requires the viewer to close
+the end-card after it is shown, and a timed duration. For any companion that suspends
+content playback, such as an in-stream ad, and does not include a time-out, the player/SDK
+must implement a close control to prevent users from being trapped in the ad.</p>
+
+Click-throughs triggered from the companion should make sure to open in a new browser
+window rather than replacing the existing end card or another window needed by the app.
+This ensures that the consumer can exit the webpage that’s loaded upon clicking through
+the ad and to make sure that the app experience isn’t disrupted. The VAST event of closeLinear must be fired upon the companion closing. This allows for ads that use companions to know when the companion was dismissed.</p>
+
+
+<h6>Additional Interactive Templates</h6>
+More such templates are expected to be added in the future. The IAB Tech Lab recommends the use of VAST extensions for the industry to experiment with such experiences, and then bring in proposals to the Digital Video Technical Working Group to formalize them as standard templates.
+</p>
+								</div><!--//section-block-->
+								
+								
+                            </section><!--//doc-section (Interactivity)-->
+							
+							<section id="brand-safety" class="doc-section">
+                                <h2 class="section-title">Brand Safety</h2>
+								<p>text</p>
+								
+								
+                                <div id="brand-macros"  class="section-block">
+                                    <h3 class="block-title">Macros</h3>
+                                    <p>text</p>
+								</div><!--//section-block-->
+								
+								
+                                <div id="brand-ssai"  class="section-block">
+                                    <h3 class="block-title">SSAI Macro Guidance</h3>
+                                    <p>text</p>
+								</div><!--//section-block-->
+								
+                                <div id="brand-taxonomy"  class="section-block">
+                                    <h3 class="block-title">Content Taxonomy</h3>
+                                    <p>text</p>
+								</div><!--//section-block-->
+								
+								
+                            </section><!--//doc-section (Brand Safety)-->
+							
+							<section id="ad-fraud" class="doc-section">
+                                <h2 class="section-title">Ad Fraud</h2>
+								<p>text</p>
+								
+								
+                                <div id="fraud-ads-cert"  class="section-block">
+                                    <h3 class="block-title">Ads.Cert – Signed Bid Requests</h3>
+                                    <p>text</p>
+								</div><!--//section-block-->
+								
+								
+                                <div id="fraud-ads-txt"  class="section-block">
+                                    <h3 class="block-title">ads.txt & app-ads.txt</h3>
+                                    <p>text</p>
+								</div><!--//section-block-->
+								
+                                <div id="fraud-sellers"  class="section-block">
+                                    <h3 class="block-title">sellers.json and SupplyChain Object (OpenRTB)</h3>
+                                    <p>text</p>
+								</div><!--//section-block-->
+								
+								
+                            </section><!--//doc-section (Ad Fraud)-->
+							
 								<section id="support" class="doc-section">
 	                                <h2 class="section-title">Support</h2>
                                     <p>If you have questions about CTV, SSAI, or any of the standards that support these technologies, send an email to support to create a ticket.</p>
@@ -736,6 +1612,45 @@ The Video object represents an in-stream video impression. Many of the fields ar
 										<a class="nav-link scrollto" href="#ad-bid-request">Bid Request</a>
 										<a class="nav-link scrollto" href="#ad-cats">CATS</a>
 										<a class="nav-link scrollto" href="#ad-creative-id">Creative Asset ID</a>
+                                    </nav>
+									
+	                                <a class="nav-link scrollto" href="#targeting">Targeting</a>
+                                    <nav class="doc-sub-menu nav flex-column">
+                                        <a class="nav-link scrollto" href="#tar-ifa">IFA</a>
+										<a class="nav-link scrollto" href="#tar-user-agent">User Agent Guidelines</a>
+                                        <a class="nav-link scrollto" href="#tar-ctv-app-id">CTV App ID Guidelines</a>
+                                        <a class="nav-link scrollto" href="#tar-taxonomy">Content Taxonomy</a>
+										<a class="nav-link scrollto" href="#tar-rearc">Project Rearc</a>
+                                    </nav>
+									
+	                                <a class="nav-link scrollto" href="#measurement">Measurement</a>
+                                    <nav class="doc-sub-menu nav flex-column">
+                                        <a class="nav-link scrollto" href="#measure-vast">VAST Tracking</a>
+										<a class="nav-link scrollto" href="#measures-headers">Headers (S2S)</a>
+                                        <a class="nav-link scrollto" href="#measure-vpaid">VPAID Deprecation</a>
+                                        <a class="nav-link scrollto" href="#measure-om">Open Measurement</a>
+										<a class="nav-link scrollto" href="#measure-macros">Macros</a>
+                                    </nav>
+									
+	                                <a class="nav-link scrollto" href="#interactivity">Interactivity</a>
+                                    <nav class="doc-sub-menu nav flex-column">
+                                        <a class="nav-link scrollto" href="#act-vpaid">VPAID</a>
+										<a class="nav-link scrollto" href="#act-simid">SIMID</a>
+                                        <a class="nav-link scrollto" href="#act-vasttemp">VAST Interactive Templates</a>
+                                    </nav>
+									
+	                                <a class="nav-link scrollto" href="#brand-safety">Brand Safety</a>
+                                    <nav class="doc-sub-menu nav flex-column">
+                                        <a class="nav-link scrollto" href="#brand-macros">Macros</a>
+										<a class="nav-link scrollto" href="#brand-ssai">SSAI Macro Guidance</a>
+                                        <a class="nav-link scrollto" href="#brand-taxonomy">Content Taxonomy</a>
+									</nav>
+									
+	                                <a class="nav-link scrollto" href="#ad-fraud">Ad Fraud</a>
+                                    <nav class="doc-sub-menu nav flex-column">
+                                        <a class="nav-link scrollto" href="#fraud-ads-cert">ads.cert</a>
+										<a class="nav-link scrollto" href="#fraud-ads-txt">ads & app-ads.txt</a>
+                                        <a class="nav-link scrollto" href="#fraud-sellers">sellers.json</a>
                                     </nav>
 									<!--//nav-->
 	                            </nav><!--//doc-menu-->
