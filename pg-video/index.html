@@ -64,11 +64,12 @@
 				<div id="doc-header" class="doc-header text-left">
                     <h1 class="doc-title">Programmatic Guide</h1>
 					<h2 class="doc-subtitle">Connected TV with Highlights for SSAI</h2>
-					<div class="meta"><i class="far fa-clock"></i> Last updated: August 15, 2021</div>
+					<div class="meta"><i class="far fa-clock"></i> Last updated: October 13, 2021</div>
 				</div>
-                <div>
+                <!--//hold off on download for now
+				<div>
                     <a class="btn btn-red btn-cta" href="../assets/pdf/ProgrammaticGuide-CTV.pdf" target="_blank"><i class="fas fa-cloud-download-alt"></i> Download PDF</a> (only the cover page for now)
-                </div>
+                </div> -->
 			</div>
                 </div><!--//doc-header-->
                 <div class="doc-body row">
@@ -1452,13 +1453,13 @@ Note - This value is essential for communicating the certification status of the
 								
                                 <div id="act-simid"  class="section-block">
                                     <h3 class="block-title">SIMID: Secure Interactive Media Interface Definition</h3>
-                                    <p>Secure Interactive Media Interface Definition (SIMID) is a standard for providing rich interactivity in the context of streaming audio and video (media) ads. While the Video Ad Serving Template (VAST) standard addresses how publishers discover various metadata assets related to an ad campaign, SIMID addresses how the publisher’s media player should communicate and interface with a rich interactive layer and vice versa. As such, one can think of the SIMID creative as one of the assets listed in a VAST document.</p>
+                                    <p>SIMID is a standard for providing rich interactivity in the context of streaming audio and video (media) ads. While the Video Ad Serving Template (VAST) standard addresses how publishers discover various metadata assets related to an ad campaign, SIMID addresses how the publisher’s media player should communicate and interface with a rich interactive layer and vice versa. As such, one can think of the SIMID creative as one of the assets listed in a VAST document.</p>
 
 A main tenet of SIMID is the separation of the interactive layer from the media asset. This clear separation allows publisher players to be in control of their streams and enables use cases such as server-side ad insertion (SSAI), as well as live streaming.</p>
 
 SIMID was built with strong security from the ground up, and is designed to be sandboxed from the media player, providing peace of mind to publishers when serving ads from third party services. SIMID aims to provide the tools and controls to allow creatives to offer rich augmented user experiences while degrading gracefully if certain features are not supported.</p>
 
-[image]
+<img src="../assets/images/simid_diagram_1_overlay.png" width="80%" height="80%"/></p></p>
 
 SIMID is part of a broader effort to replace the older VPAID standard. While Open Measurement replaces the use case of verification and measurement, SIMID replaces the use case of interactive streaming media ads, the original intended purpose of the VPAID standard. SIMID provides a path for VPAID deprecation and allows the industry to move to more secure and transparent standards. SIMID aims to gain broad industry adoption by ensuring that the standard is focused on the primary use case of interactivity.</p>
 
@@ -1466,11 +1467,27 @@ The use of HTML is required for the SIMID creative, but not the publisher proper
 
 Certain devices, including TV sets and OTT boxes, restrict loading of external assets, have limited HTML rendering capabilities, or are unable to display HTML along with audio or video. These devices are incapable of implementing SIMID. Devices that support HTML and JavaScript can support SIMID - on both client side as well as in server side ad insertion scenarios.</p>
 
-[image]
+<img src="../assets/images/simid_diagram_3_assets.png" width="80%" height="60%"/></p></p>
 
-A SIMID creative can be included in a VAST document by way of an <InteractiveCreativeFile> element. The text within this element must be a url which returns an HTML document. When loaded into an iframe by a media player, this HTML document will define the SIMID creative’s content, and will direct the web browser or host application to load any additional assets required by that creative (images, CSS, scripts, etc.). The <InteractiveCreativeFile> element is defined as a child of the <MediaFiles> element in VAST 4.0.</p>
+A SIMID creative can be included in a VAST document by way of an <p class="tag">&#60InteractiveCreativeFile&#62</p> element. The text within this element must be a url which returns an HTML document. When loaded into an iframe by a media player, this HTML document will define the SIMID creative’s content, and will direct the web browser or host application to load any additional assets required by that creative (images, CSS, scripts, etc.). The <p class="tag">&#60InteractiveCreativeFile&#62</p> element is defined as a child of the <p class="tag">&#60MediaFiles&#62</p> element in VAST 4.0.</p>
 	
-[code image]
+ <h6>Example<h6>
+                                 <div id="taxonomy-code-2" class="section-block">
+                                     <div class="code-block">
+                                         <pre><code class="language-xml">
+
+	
+&#60MediaFiles&#62
+    &#60MediaFile&#62https://example.com/mediafile.mp4&#60/MediaFile&#62
+    &#60InteractiveCreativeFile type="text/html" apiFramework="SIMID" variableDuration="true"&#62
+        &#60![CDATA[https://adserver.com/ads/creative.html]]&#62
+    &#60/InteractiveCreativeFile&#62
+&#60/MediaFiles&#62
+
+</code></pre>
+</div>
+</div>
+
 
 <h5>Player and Creative Communication</h5>
 A media player and a SIMID creative communicate by sending serialized messages back and forth to each other.</p>
@@ -1483,17 +1500,13 @@ See the full <a href="https://interactiveadvertisingbureau.github.io/SIMID/">SIM
 								
                                 <div id="act-vast"  class="section-block">
                                     <h3 class="block-title">VAST Interactive Template</h3>
-                                    <p>While interactive video ads command a premium, they are not supported on all platforms or
-by all publishers. While this is partly due to concerns around VPAID, which are being addressed by VAST4 and the replacement for VPAID, the execution of unknown code may never be allowed in many cases. To address this, VAST 4.1 introduces the concept of “VAST Interactive Templates”. These are interactive experiences that only require some visual assets (images, css, etc.) and some instructions/metadata in the VAST tag. The publisher implements the interactive code and uses the metadata to run the interactive ad. </p>
+                                    <p>While interactive video ads command a premium, they are not supported on all platforms or by all publishers. While this is partly due to concerns around VPAID, which are being addressed by VAST4 and the replacement for VPAID, the execution of unknown code may never be allowed in many cases. To address this, VAST 4.1 introduces the concept of “VAST Interactive Templates”. These are interactive experiences that only require some visual assets (images, css, etc.) and some instructions/metadata in the VAST tag. The publisher implements the interactive code and uses the metadata to run the interactive ad. </p>
 
 In VAST 4.1 we have included an “end-card” based on a use case that has already been informally implemented in the industry. </p>
 
-<h5>Companion as End-Card<h5>
-Companion Ads are secondary ads included in the VAST tag that accompany the
-video/audio ad. The <CompanionAds> element is a container for one or more <Companion>
-elements, where each Companion element provides the creative files and tracking details.
-Companion Ads, including any creative, may be included in both InLine and Wrapper
-formatted VAST ads.</p>
+<h5>Companion as End-Card</h5>
+Companion Ads are secondary ads included in the VAST tag that accompany the video/audio ad. The <p class="tag">&#60CompanionAds&#62</p> element is a container for one or more <p class="tag">&#60Companion&#62</p>
+elements, where each Companion element provides the creative files and tracking details. Companion Ads, including any creative, may be included in both InLine and Wrapper formatted VAST ads.</p>
 
 A value of "end-card" signals to the player that this companion ad is meant to be shown
 after the video stops playing. The end-card should match the dimensions of the preceding
@@ -1516,6 +1529,7 @@ the ad and to make sure that the app experience isn’t disrupted. The VAST even
 <h6>Additional Interactive Templates</h6>
 More such templates are expected to be added in the future. The IAB Tech Lab recommends the use of VAST extensions for the industry to experiment with such experiences, and then bring in proposals to the Digital Video Technical Working Group to formalize them as standard templates.
 </p>
+
 								</div><!--//section-block-->
 								
 								
@@ -1523,23 +1537,130 @@ More such templates are expected to be added in the future. The IAB Tech Lab rec
 							
 							<section id="brand-safety" class="doc-section">
                                 <h2 class="section-title">Brand Safety</h2>
-								<p>text</p>
+								<p></p>
 								
 								
                                 <div id="brand-macros"  class="section-block">
                                     <h3 class="block-title">Macros</h3>
-                                    <p>text</p>
+                                    <p>
+VAST player macros enable publisher’s media players to provide additional data points into ad requests. They cover passing details such as the user agent and app that the VAST ad is serving into. </p>
+
+VAST player macros are to be filled by the party that performs VAST HTTP requests. Most commonly, for both VAST URLs and tracking pixel URLs, this would be the video player that’s executing the ad or the SSAI server on behalf of the video player. </p>
+
+For a full list of macros, please refer to the <a href="http://interactiveadvertisingbureau.github.io/vast/vast4macros/vast4-macros-latest.html">VAST macro list page.</a> </p>
+
+<h5>Marking Macro Values as Unknown or Unavailable</h5>
+For any macros that are marked as optional or deprecated and where the actual macro is not provided, the following special values must be inserted into the macro to indicate the reason for not providing the information: 
+</p>
+
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>If the macro value is... </th>
+                                                    <th>Then replace macro with...</th>
+                                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Value is unknown, but would be shared if it was known.</td>
+                                                    <td>-1</td>
+                                                    
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <td>Value is known, but information can't be shared because of policy or other circumstances (i.e. no value currently exists for
+nonlinear AdType).
+</td>
+                                                    <td>-1</td>
+                                                    
+                                                    
+                                                </tr>
+                                                
+											</table>
+										</div>
+
 								</div><!--//section-block-->
 								
 								
                                 <div id="brand-ssai"  class="section-block">
                                     <h3 class="block-title">SSAI Macro Guidance</h3>
-                                    <p>text</p>
+                                    <p>While the IAB Tech Lab has an official list of 50+ macros, it’s technically not possible to support all macros in any given HTTP request simply due to length limitations. To help guide SSAI providers and the industry toward an optimal set of macros, the below list has been curated for sharing basic user agent, environment, and content details that are critical to verification partners and buyers. </p>
+
+Information that may be available via HTTP headers is not always consistent, and often publishers do not have control over what values are forwarded. Hence providing macros such as [DEVICEUA], [PAGEURL] and [SERVERUA] are recommended. These macros are also increasingly important as the industry moves away from VPAID and HTTP headers. </p>
+
+<h6>Recommended Device & Environment Macros</h6>
+<ul>
+[APPBUNDLE] <br>
+[STOREID] <br>
+[STOREURL] <br>
+[DOMAIN]<br>
+[ADTYPE] <br>
+[PAGEURL] <br>
+[DEVICEIP] <br>
+[DEVICEUA] <br>
+</ul>
+
+<h6>Recommended Content Macros</h6>
+<ul>
+[CONTENTURI] <br>
+[CONTENTID] <br>
+</ul>
+
+<h6>Recommended SSAI / Media Player Specific Macros</h6>
+<ul>
+[SERVERUA] <br>
+[SERVERSIDE] <br>
+[CLIENTUA] <br>
+[PLAYBACKMETHODS]<br>
+[PLAYERSTATE] <br>
+</ul>
+
+Refer to the <a href="https://iabtechlab.com/audio-video/ssai-vast-macros-guidance/">SSAI VAST Macro Guidance: Version 1.0</a> for more details on the full list of recommended macros.</p>
 								</div><!--//section-block-->
 								
                                 <div id="brand-taxonomy"  class="section-block">
-                                    <h3 class="block-title">Content Taxonomy</h3>
-                                    <p>text</p>
+                                    <h3 class="block-title">Content Taxonomy & Suitability Framework</h3>
+                                    <p>The IAB Tech Lab Content Taxonomy 2.x provides a “common language” that all parties—publishers, Server-Side Providers (SSPs), Demand-Side Providers (DSPs), verification vendors, and advertisers—can use and understand when describing the content of a page, app, or other user environment. The content taxonomy is useful in two main use cases—contextual targeting and brand safety/suitability. 
+
+<h5>Content Taxonomy Usage Guidance for Buyers</h5>
+<strong>Brand safety:</strong> Buyers should familiarize themselves with the GARM/4A’s APB Brand Safety & Suitability Framework and the Tech Lab Content Taxonomy. They should also understand the risk/tolerance levels they are comfortable with by looking at examples of the various suitability examples. They should then work with their DSPs and ad verification vendors to ensure that their goals are met by specifying the risk tolerance goals using the Content Taxonomy.</p>
+
+<strong>Targeting:</strong> With the increased awareness of user privacy concerns, contextual targeting is becoming more important. The Content Taxonomy enables buyers to use a consistent language across all publishers and platforms. Buyers should also map any specific areas of interest to the Content Taxonomy categories so that the most relevant content can be targeted for their campaigns. </p>
+
+<h5>Implementation Guidance for Ad Verification Vendors</h5>
+Ad verification vendors are likely to be the main implementers of the brand safety floor and suitability. As such, the recommendations provided here would also apply to any other audience implementing brand safety checks. 
+
+<h6>Recommendations:</h6>
+<ul>
+	<li>Ad verification vendors should apply any relevant Content Taxonomy categories to a given piece of content, and/or any of the 11 brand safety categories.</li>
+	<li>Ad Verification vendors should apply a risk level whenever any of the 11 core brand safety category labels are applied to a piece of content. </li>
+	<li>It is possible to have multiple brand safety category labels (and appropriate risk levels with each brand safety category label) associated with a given piece of content.</li>
+	<li>As of v2.2, ad verification vendors are not required to apply risk levels to topic categories other than the 11 core Brand Safety categories in the Content Taxonomy.</li>
+	<li>As indicated above, the descriptions for the categories at various risk levels are from the GARM/4As APB Framework.</li>
+	<li>In addition to brand safety, ad verification vendors might also provide more information about the topic context using the other categories on the content taxonomy.</li>
+</ul>
+
+<h5>Implementation Guidance for DSPs</h5>
+<strong>Brand safety:</strong> DSPs would likely need to implement the following set of capabilities to support brand safety checks for buyers.</p> 
+
+<ol>
+	<li>A user interface to allow buyers to define their acceptable “risk tolerance” levels (high/med/low) for the 11 core brand safety categories as they set up their campaigns.</li>
+	<li>A workflow where they accept the content URL from the publisher/SSP and pass it along to an ad verification vendor.</li>
+	<li>Use the response from the ad verification vendor (as described above) to decide which pieces of content match the buyer’s brand safety risk tolerance for that brand.</li>
+</ol>
+
+<strong>Targeting:</strong> In order to allow buyers to target campaigns based on interest, DSPs should make the categories from the Content Taxonomy available in their campaign creation workflows. DSPs might also have integrations with ad verification vendors to check the content and verify the categories for the content.</p>
+
+<h5>Implementation Guidance for Publishers & SSPs</h5>
+<strong>Brand safety:</strong> To support brand safety and suitability, there are two key areas publishers and server-side providers (SSPs) should be aware of and implement support for:</p>
+
+<ol>
+	<li><strong>Floor content:</strong> The key guidance to publishers and SSPs is that they should strongly consider preventing the presence of content that would receive a “Floor” risk level in association with any of the 11 Brand Safety categories. Barring that, at a minimum they should consider not monetizing or allowing advertising on any such content.</p></li>
+	<li><strong>Providing context:</strong> When making ad requests, publishers and SSPs should tag each piece of content with the relevant content categories from the Content Taxonomy and provide those in the OpenRTB or VAST bid request (as described in section 2). It is very likely that the buy side platforms will want to perform their own analysis using ad verification vendors of the content categories, as well as the floor & suitability checks. So, Publishers/SSPs should also provide the URL of the content, so that the ad verification vendors can perform their checks. </p></li>
+
+For more detailed information refer to the full <a href="https://iabtechlab.com/standards/content-taxonomy/">Content Taxonomy and the Implementation Guide.</a></p>
 								</div><!--//section-block-->
 								
 								
@@ -1552,18 +1673,94 @@ More such templates are expected to be added in the future. The IAB Tech Lab rec
 								
                                 <div id="fraud-ads-cert"  class="section-block">
                                     <h3 class="block-title">Ads.Cert – Signed Bid Requests</h3>
-                                    <p>text</p>
+                                    <p>The principle of signed bid requests is that Publishers (ie publisher software) should add a signature at the origination of the real time bidding transaction. This provides a traceable path to verify critical data of the inventory such as domain, IP, format, etc. Publishers will benefit from this anti-fraud measure in knowing that their inventory is securely passed for sale. Advertisers and buyers will benefit from this by reviewing the supply authentication to gain confidence in where the inventory is coming from in the real time bidding transaction.</p>
+
+Signed bid requests complements the ads.txt protocol. Ads.txt and the data within it should be used to validate who the authorized sellers are for a source of inventory. Publisher signatures allow a buyer to validate some aspects of the bid request and know that it’s trusted from the publisher and key elements of the bid request are unmodified. Together, these technologies are a powerful combination in fighting fraud to allow buyers to check for authenticity and authorization of the sales channel.
+</p>
 								</div><!--//section-block-->
 								
 								
                                 <div id="fraud-ads-txt"  class="section-block">
                                     <h3 class="block-title">ads.txt & app-ads.txt</h3>
-                                    <p>text</p>
+                                    <p>The ads.txt specification focuses on protecting advertising inventory hosted by the website publishing the ads.txt file. And the app-ads.txt specification describes an extension of the original ads.txt standard to meet the requirements for software applications distributed through mobile app stores, connected television app stores, and other distribution channels of this nature by obtaining the app developer’s website URL from an app listing page in an app store.</p>
+
+For detailed guidance on implementing <a href="https://iabtechlab.com/ads-txt/">Ads.txt or App-ads.txt</a> review the specifications.
+</p>
 								</div><!--//section-block-->
 								
-                                <div id="fraud-sellers"  class="section-block">
+                                <div id="fraud-inventory"  class="section-block">
+                                    <h3 class="block-title">CTT/OTT Inventory Sharing</h3>
+                                    <p>In OTT, these situations often arise from relationships such as content distribution (MVPDs or vMVPDs) or as a result of various carriage agreements (TV Everywhere). Ultimately, nearly all relationships can be simplified into the case where “some business entity, other than the app/site owner, has ownership over some ad space within the app/site and the right to sell that inventory.”</p>
+
+A simple example of one such situation is a content distributor such as a vMVPD app. In these content distribution agreements, one entity, a content producer/programmer A, gives rights to a content distributor B, to rebroadcast their content. As part of the agreement, both A & B have ownership of some portion of ad inventory delivered into the streamed content (the inventory is “shared”). By using the word “ownership”, we imply that both A & B may legitimately originate an ad request inside an app that will be propagated into the programmatic ecosystem.</p>
+
+In the current ads.txt & app-ads.txt standard, declaring this relationship would require the vMVPD app to authorize Programmer A in their app-ads.txt file, along with the programmers’ authorized seller and reseller information. This increases the cost of generating and maintaining an app-ads.txt file, and incrementally decreases the security benefit of the standard as the number of authorized sellers grows. It is these scenarios that we intend to define and validate via the Ads.txt & App-ads.txt for Inventory Sharing guidelines for CTV/OTT.</p>
+
+In the previous version of ads.txt & app-ads.txt, supporting these scenarios would have required the app/site owner/developer to maintain their ads.txt/app-ads.txt file with the publisher IDs of all the partners (and their resellers) with whom they have negotiated some share of inventory ownership rights - making many ads.txt/app-ads.txt files prohibitively difficult to maintain.</p>
+
+Now the ads.txt & app-ads.txt specs have been updated to include the ability to designate another domain (aside from the app/site developer’s) that is able to validate the publisher ID of the bid request. These domains are to be passed in a new extension (app.ext.inventorypartnerdomain or site.ext.inventorypartnerdomain) to the OpenRTB spec.</p>
+
+To validate these domains, the (app)ads.txt spec also includes the following additional declaration in ads.txt & app-ads.txt files (defined in ads.txt), intended to be entered by the owner of the app/site: 
+</p>
+
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>VARIABLE</th>
+                                                    <th>VALUE</th>
+                                                    <th>DESCRIPTION</th>
+                                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row"><p class="tag">inventorypartnerdomain
+
+</p></th>
+                                                    <td>Pointer to the domain of the
+partner (of the site/app owner) with ownership of some portion of ad inventory on the site/app. The partner’s ads.txt or appads.txt file will be hosted here.</td>
+                                                    <td>When a site or an app contains ad inventory that is owned by another partner - the app or site should list all domains for those partners via this directive.</td>
+                                                    
+                                                </tr>
+											</table>
+										</div>
+									</p>
+<h6>Example Use Case A: Programmer Owned App</h6>
+<strong>Business scenario:</strong> All of the inventory is being produced and sold by programmer A, in their owned app, via their chosen SSPs. This is the most straightforward example of OTT inventory and does not differ from the current app-ads.txt authorization model.</p>
+
+<ul>
+<strong>App:</strong> Programmer A App (app bundle ID: 12345)<br>
+<strong>Developer URL domain for the app:</strong> devsite.programmerA.com<br>
+<strong>Seller/Publisher:</strong> Programmer A (publisher ID: abcde)<br>
+<strong>Content Producer:</strong> Programmer A<br>
+</ul>
+								</div><!--//section-block-->
+								
+								
+								<div id="fraud-sellers"  class="section-block">
                                     <h3 class="block-title">sellers.json and SupplyChain Object (OpenRTB)</h3>
-                                    <p>text</p>
+                                    <p>The IAB Tech Lab has introduced two technical specifications aimed at increasing trust of the supply chain, specifically on the supply-side of real-time bidding and programmatic buying. The first, sellers.json, enables buyers to verify the entities who are either direct sellers of, or intermediaries in the selected digital advertising opportunity for purchase. The second, the OpenRTB SupplyChain object, allows buyers to see all parties who are selling or reselling a given bid request. </p>
+
+A published and accessible Sellers.json file allows the identity of the final seller of a bid request to be discovered (assuming that they are ads.txt authorized). It also allows the identities of all nodes (entities that participated in the bid request) in the SupplyChain object to be discovered. Currently, it is possible for the final seller to be identified via the Publisher.name and Publisher.domain attributes, but in practice, these properties are inconsistently populated by various selling systems. </p>
+
+Every advertising system listed in an ads.txt file and any advertising system that is referenced
+from a SupplyChain object node should publish a Sellers.json file at the following location:</p>
+
+<p class="tag">https://{advertising_system_domain}/sellers.json</p></p>
+
+The SupplyChain object enables buyers to see all parties who are selling or reselling a given bid request. This information can be important to buyers for any number of reasons including transparency of the supply chain, ensuring that all intermediaries are entities that the buyer wants to transact with and that inventory is purchased as directly as possible. The implementation should be as transparent as possible to buyers. It should enable them to easily understand who it is that is participating in the sale of any piece of inventory.</p>
+
+The SupplyChain object is composed primarily of a set of nodes where each node represents a specific entity that participates in the selling of a bid request. The entire chain of nodes from beginning to end would represent all sellers who were paid for an individual bid request.</p>
+
+It is invalid for a reseller to copy the SupplyChain object from the previous seller to their request for that inventory without also inserting their node into the chain. If a reseller doesn’t insert themselves in the chain, their bid request should not include the SupplyChain object. </p>
+
+If a seller is reselling inventory that didn’t previously contain a SupplyChain object, they should create the SupplyChain object themselves, mark the “complete” attribute with a value of 0 and insert their node into the “nodes” array.</p>
+
+If a seller is reselling inventory that has a SupplyChain object, the reseller should copy the existing object, keeping the original value of the “complete” and append their node to the end of the “nodes” array.</p>
+
+If this is the originating bid request for this inventory, the SupplyChain object should be created with the “complete” attribute set to 1 and their information being the only node in the “nodes” array.
+</p>
 								</div><!--//section-block-->
 								
 								
@@ -1650,7 +1847,8 @@ More such templates are expected to be added in the future. The IAB Tech Lab rec
                                     <nav class="doc-sub-menu nav flex-column">
                                         <a class="nav-link scrollto" href="#fraud-ads-cert">ads.cert</a>
 										<a class="nav-link scrollto" href="#fraud-ads-txt">ads & app-ads.txt</a>
-                                        <a class="nav-link scrollto" href="#fraud-sellers">sellers.json</a>
+                                        <a class="nav-link scrollto" href="#fraud-inventory">CTV/OTT Inventory Sharing</a>
+										<a class="nav-link scrollto" href="#fraud-sellers">sellers.json</a>
                                     </nav>
 									<!--//nav-->
 	                            </nav><!--//doc-menu-->
