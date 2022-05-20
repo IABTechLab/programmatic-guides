@@ -636,7 +636,7 @@ Other subordinates to the <p class="tag">BidRequest</p> provide various forms of
 
 <h6>Object: Video</h6>
 <p>The Video object represents an in-stream video impression. Many of the fields are non-essential for minimally viable transactions but are included to offer fine control when needed. Video in OpenRTB generally assumes compliance with the VAST standard. As such, the notion of companion ads is supported by optionally including an array of Banner objects (refer to the Banner object in Section 3.2.6 of the OpenRTB 2.x Spec) that define these companion ads.</p>
-
+<p>As of <a href="https://iabtechlab.com/wp-content/uploads/2022/04/OpenRTB-2-6_FINAL.pdf">OpenRTB 2.6</a> we've introduced the concept of Pod Bidding. An ad pod is the term describing an ad break of the type you’d see in a TV-like viewing experience or hear on a radio stream. An ad pod typically contains one or more in-stream creative assets that play out contiguously within a stream of video or audio content. Ad podding features in OpenRTB 2.6 build on capabilities in previous versions for including multiple ad requests within a single bid request object to indicate those ad requests are in some way related. Pod bidding signals communicate additional information about the pod & impression opportunities within the pod such as the sequence of the ad impressions, total pod length, maximum # of ads within a pod, multiple pod associations, and more. A detailed implementation guide for Pod Bidding can be found in Section 7.6 of OpenRTB 2.6. Newly added fields to support are noted in the table below.</p>
 </div><!--//bid request-->
 
                                    <div style="color:red; padding-top:20px; padding-bottom:10px"><h4>OpenRTB Object for Video</h4></div>
@@ -787,6 +787,41 @@ Other subordinates to the <p class="tag">BidRequest</p> provide various forms of
                                                     <td>integer array</td>
                                                     <td>Supported VAST companion ad types. Refer to the video object in the current <a href="https://iabtechlab.com/standards/openrtb">OpenRTB spec</a> for list of VAST ad types. Recommended if companion <p class="tag">Banner</p> objects are included via the <p class="tag">companionad</p> array. If one of these banners will be rendered as an end-card, this can be specified using the <p class="tag">vcm</p> attribute with the particular banner.</td>
                                                 </tr>
+						    
+						    <th scope="row"><p class="tag">rqddurs</p></th>
+                                                    <td>integer array</td>
+                                                    <td>Precise acceptable durations for video creatives in seconds. This field specifically targets the Live TV use case where non-exact ad durations would result in undesirable ‘dead air’. This field is mutually exclusive with minduration and maxduration; if rqddurs is specified, minduration and maxduration must not be specified and vice versa.</td>
+                                                </tr>
+						    
+						    <th scope="row"><p class="tag">maxseq</p></th>
+                                                    <td>integer; recommended</td>
+                                                    <td>Indicates the maximum number of ads that may be served into a “dynamic” video ad pod (where the precise number of ads is not predetermined by the seller). See <a href="https://iabtechlab.com/wp-content/uploads/2022/04/OpenRTB-2-6_FINAL.pdf">OpenRTB 2.6 Section 7.6</a> for more details.</td>
+                                                </tr>
+
+						    <th scope="row"><p class="tag">poddur</p></th>
+                                                    <td>integer; recommended</td>
+                                                    <td>Indicates the total amount of time in seconds that advertisers may fill for a “dynamic” video ad pod (See <a href="https://iabtechlab.com/wp-content/uploads/2022/04/OpenRTB-2-6_FINAL.pdf">OpenRTB 2.6 Section 7.6</a> for more details), or the dynamic portion of a “hybrid” ad pod. This field is required only for the dynamic portion(s) of video ad pods. This field refers to the length of the entire ad break, whereas minduration/maxduration/rqddurs are constraints relating to the slots that make up the pod.</td>
+                                                </tr>
+
+						    <th scope="row"><p class="tag">podid</p></th>
+                                                    <td>integer</td>
+                                                    <td>Unique identifier indicating that an impression opportunity belongs to a video ad pod. If multiple impression opportunities within a bid request share the same podid, this indicates that those impression opportunities belong to the same video ad pod.</td>
+                                                </tr>
+
+						    <th scope="row"><p class="tag">podseq</p></th>
+                                                    <td>integer; default 0</td>
+                                                    <td>The sequence (position) of the video ad pod within a content stream. Refer to List: <a href="https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/master/AdCOM%20v1.0%20FINAL.md#list--pod-sequence-">Pod Sequence in AdCOM 1.0</a> for guidance on the use of this field.</td>
+                                                </tr>
+
+						    <th scope="row"><p class="tag">mincpmpersec</p></th>
+                                                    <td>float</td>
+                                                    <td>Minimum CPM per second. This is a price floor for the “dynamic” portion of a video ad pod, relative to the duration of bids an advertiser may submit.</td>
+                                                </tr>
+
+						    <th scope="row"><p class="tag">slotinpod</p></th>
+                                                    <td>integer; default 0</td>
+                                                    <td>For video ad pods, this value indicates that the seller can guarantee delivery against the indicated slot position in the pod. Refer to List: <a href="https://github.com/InteractiveAdvertisingBureau/AdCOM/blob/master/AdCOM%20v1.0%20FINAL.md#list--slot-position-in-pod-">Slot Position in Pod in AdCOM 1.0</a> guidance on the use of this field.</td>
+                                                </tr>
 												
                                                     <th scope="row"><p class="tag">ext</p></th>
                                                     <td>object</td>
@@ -800,6 +835,7 @@ Other subordinates to the <p class="tag">BidRequest</p> provide various forms of
 								
 								<h6>Bid Request/Response Samples</h6>
 <p>The official OpenRTB Github repository offers a set of validated example requests. The following GitHub repository should be considered the canonical examples for implementers.</p> <p><a href="https://github.com/openrtb/examples">https://github.com/openrtb/examples</a></p>
+<p>Examples specific to Pod Bidding can be found in <a href="https://iabtechlab.com/wp-content/uploads/2022/04/OpenRTB-2-6_FINAL.pdf">OpenRTB 2.6 Section 7.6</a></p>
 
 								<p>The following example illustrates a bid request for a video impression with two companion ad slots (1 expandable). Additionally, the video content itself is described in the "content" object. A few notes about specific fields in the example:</p>
 
